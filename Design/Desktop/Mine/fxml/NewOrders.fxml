@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="57.0" layoutY="25.0" text="Dashboard" textFill="#e7e5e5">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER_LEFT" layoutX="57.0" layoutY="86.0" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #02030A;">
+         <children>
+            <Label text="ID" textFill="#e7e5e5">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="Name" textFill="#e7e5e5">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label text="Phone no #" textFill="#e7e5e5">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label text="Address" textFill="#e7e5e5">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label text="Status" textFill="#e7e5e5">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <ScrollPane layoutX="24.0" layoutY="135.0" prefHeight="412.0" prefWidth="743.0" stylesheets="@css/style.css">
+         <content>
+            <TableView prefHeight="493.0" prefWidth="743.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="ID" />
+                <TableColumn prefWidth="75.0" text="Name" />
+                  <TableColumn prefWidth="75.0" text="Phone no #" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>
