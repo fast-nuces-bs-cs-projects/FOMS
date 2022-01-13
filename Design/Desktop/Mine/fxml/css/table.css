@@ -1,0 +1,23 @@
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background, 
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color:  #02030A;
+}
+
+.table-view{
+   -fx-background-color:  #02030A;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: #02030A;
+    -fx-text-fill: #e7e5e5;
+}
+
+.table-view .column-header , .table-view .table-cell{
+    -fx-background-color:  #02030A;
+}
+
+
