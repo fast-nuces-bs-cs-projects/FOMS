@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="panePendingOrders" prefHeight="554.0" prefWidth="793.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="45.0" layoutY="25.0" text="Rejected Orders" textFill="#e7e5e5">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="43.0" layoutY="74.0" prefHeight="476.0" prefWidth="734.0" style="-fx-background-color: #02030A;" stylesheets="@css/scroll.css">
+         <content>
+            <TableView prefHeight="476.0" prefWidth="723.0" stylesheets="@css/table.css">
+               <columns>
+                  <TableColumn prefWidth="58.399993896484375" resizable="false" text="#ID" />
+                  <TableColumn prefWidth="124.0" text="Name" />
+                  <TableColumn prefWidth="168.00003051757812" text="Phone no" />
+                  <TableColumn prefWidth="153.5999755859375" text="Address" />
+                  <TableColumn prefWidth="214.39996337890625" text="Status" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controller">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkg.foms.Controller.Home">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -182,7 +182,7 @@
                   </Label>
                   <ScrollPane layoutX="45.0" layoutY="180.0" prefHeight="370.0" prefWidth="732.0" style="-fx-background-color: #02030A;" stylesheets="@css/scroll.css">
                      <content>
-                        <TableView prefHeight="369.0" prefWidth="718.0" stylesheets="@css/table.css">
+                        <TableView prefHeight="354.0" prefWidth="731.0" stylesheets="@css/table.css">
                           <columns>
                             <TableColumn prefWidth="58.399993896484375" resizable="false" text="#ID" />
                             <TableColumn prefWidth="124.0" text="Name" />
