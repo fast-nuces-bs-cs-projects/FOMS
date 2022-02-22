@@ -1,0 +1,21 @@
+.root {
+    -fx-background-color :  #02030A;
+}
+
+VBox {
+    -fx-background-color :  #05071F;
+}
+
+/* Button Styling for Dashbaord */
+.button {
+    -fx-background-color : #05071F;
+    -fx-text-fill : #e7e5e5;
+}
+
+.button:hover {
+    -fx-background-color : #10165F;
+}
+
+.button:pressed {
+    -fx-background-color : #1620A1;
+}

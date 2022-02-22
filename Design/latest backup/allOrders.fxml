@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="panePendingOrders" prefHeight="554.0" prefWidth="793.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="paneAllOrders" prefHeight="554.0" prefWidth="793.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkg.foms.Controller.AllOrders">
    <children>
-      <Label layoutX="45.0" layoutY="25.0" text="Pending Orders" textFill="#e7e5e5">
+      <Label layoutX="45.0" layoutY="25.0" text="All Orders" textFill="#e7e5e5">
          <font>
             <Font size="24.0" />
          </font>
