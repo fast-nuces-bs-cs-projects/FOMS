@@ -15,9 +15,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.controlsfx.control.action.Action;
 import pkg.foms.HelloApplication;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -133,15 +136,31 @@ public class Home {
 
 
 
-    //------------------------------------------
+    //--------------------------- Add Item ---------------------------
+    @FXML
+    void UploadItemImg(ActionEvent event){
+        FileChooser fc = new FileChooser();
+        File file = fc.showOpenDialog(null);
+        file.getAbsoluteFile();
+
+        //->Set Image Path 
+    }
+
+
     @FXML
     void add_Item(ActionEvent event){
+        String ItemName      = txt_ItemName.getText();
+        String ItemDetail    = txt_ItemDetail.getText();
+        String ItemImagePath = txt_ImgPathItem.getText();
+
+        /*FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
+        fc.setInitialFileName(file_selected.getName().toString());
+        File save_file = fc.showSaveDialog(null);
+        System.out.println(file_selected.toString());*/
 
     }
-    @FXML
-    void add_User(ActionEvent event) {
 
-    }
 
 
 
@@ -151,8 +170,15 @@ public class Home {
         paneAllOrders.setVisible(false);paneCustomerFeedback.setVisible(false);paneAddItem.setVisible(false);paneAddUser.setVisible(false);
         paneOverview.setVisible(true);
 
-        
 
+
+
+    }
+
+
+
+    @FXML
+    void add_User(ActionEvent event) {
 
     }
 
