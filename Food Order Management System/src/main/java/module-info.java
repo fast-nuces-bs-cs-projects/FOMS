@@ -9,6 +9,7 @@ module pkg.foms {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens pkg.foms to javafx.fxml;
     exports pkg.foms;

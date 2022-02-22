@@ -4,20 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.controlsfx.control.action.Action;
+import javafx.stage.StageStyle;
 import pkg.foms.HelloApplication;
 
 import java.io.File;
@@ -84,10 +79,13 @@ public class Home {
     @FXML
     private Button btn_Logout;
 
+    //-> Message box
+    Alert msg_box = new Alert(Alert.AlertType.NONE);
+
 
     //--> Functions
 
-    //--> Switching Pane
+    //-> Switching Pane
     @FXML
     void overview(ActionEvent event) {
         paneOverview.setVisible(true);
@@ -134,16 +132,23 @@ public class Home {
         newStage.show();
     }
 
+    //-> Message Box
+    void displayMessageBox(String msg,String Type){
+        msg_box.setAlertType(Alert.AlertType.valueOf(Type));
+        msg_box.setContentText(msg);
+        msg_box.initStyle(StageStyle.UTILITY);
+        msg_box.show();
+    }
 
 
     //--------------------------- Add Item ---------------------------
     @FXML
     void UploadItemImg(ActionEvent event){
         FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image", "*.png*"));
         File file = fc.showOpenDialog(null);
-        file.getAbsoluteFile();
-
-        //->Set Image Path 
+        //->Set Image Path
+        txt_ImgPathItem.setText(String.valueOf(file.getAbsoluteFile()));
     }
 
 
@@ -153,11 +158,13 @@ public class Home {
         String ItemDetail    = txt_ItemDetail.getText();
         String ItemImagePath = txt_ImgPathItem.getText();
 
-        /*FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
-        fc.setInitialFileName(file_selected.getName().toString());
-        File save_file = fc.showSaveDialog(null);
-        System.out.println(file_selected.toString());*/
+        if(ItemName.isEmpty() || ItemDetail.isEmpty() || ItemImagePath.isEmpty()) {
+            displayMessageBox("Please Complete all fields ..!!","WARNING");
+        }
+        else{
+            displayMessageBox("Item added successfully ..!!","WARNING");
+        }
+
 
     }
 
