@@ -23,10 +23,10 @@ public class Index {
     private Pane Signin_Pane;
 
     @FXML
-    private PasswordField signin_pswd;
+    private TextField signin_username;
 
     @FXML
-    private TextField signin_username;
+    private PasswordField signin_pswd;
 
     @FXML
     private Button submit;
@@ -34,7 +34,7 @@ public class Index {
     //-> Change UI from Index to Home
     @FXML
     void login(ActionEvent event) throws IOException {
-        //-> Close Login Page
+        //-> Close Index Window
         Stage stage = (Stage) submit.getScene().getWindow();
         stage.close();
         //->Load Home Window

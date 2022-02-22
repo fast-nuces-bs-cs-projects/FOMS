@@ -23,120 +23,96 @@ import java.util.Objects;
 
 public class Home {
 
-    @FXML
-    private Button btn_addItem;
+    //--> FXML Variables
 
+    //-> Pane
     @FXML
-    private Button btn_addUser;
-
+    private StackPane stackpane;
     @FXML
-    private Button btn_uploadImg;
-
+    private Pane paneOverview;
     @FXML
-    private Button btn_uploadUserImg;
-
+    private Pane paneAllOrders;
     @FXML
-    private Button create_folder;
-
-    @FXML
-    private Label email_label;
-
-    @FXML
-    private AnchorPane home_window;
-
-    @FXML
-    private Label labelTotalDelivered;
-
-    @FXML
-    private Label labelTotalOrders;
-
-    @FXML
-    private Label labelTotalPendingOrders;
-
-    @FXML
-    private Label labelTotalRejectedOrders;
-
+    private Pane paneCustomerFeedback;
     @FXML
     private Pane paneAddItem;
-
     @FXML
     private Pane paneAddUser;
 
-    @FXML
-    private Pane paneAllOrders;
-
-    @FXML
-    private Pane paneCustomerFeedback;
-
-    @FXML
-    private Pane paneOverview;
-
-    @FXML
-    private Pane pnlMenus;
-
-    @FXML
-    private ImageView profImg;
-
-    @FXML
-    private StackPane stackpane;
-
-    @FXML
-    private TextField txt_ImgPath;
-
-    @FXML
-    private TextArea txt_ItemDetail;
-
-    @FXML
-    private TextField txt_ItemName;
-
-    @FXML
-    private TextField txt_email;
-
-    @FXML
-    private TextField txt_imgPath;
-
+    //-> Pane : Add User
     @FXML
     private TextField txt_name;
-
+    @FXML
+    private TextField txt_email;
     @FXML
     private PasswordField txt_pswd;
+    @FXML
+    private TextField txt_ImgPathUser;
+    @FXML
+    private Button btn_uploadUserImg;
 
+    //-> Pane : Add Item
+    @FXML
+    private TextField txt_ItemName;
+    @FXML
+    private TextArea txt_ItemDetail;
+    @FXML
+    private TextField txt_ImgPathItem;
+    @FXML
+    private Button btn_UploadItemImg;
+
+    //-> Label
+    @FXML
+    private ImageView profImg;
     @FXML
     private Label username;
-
     @FXML
-    private VBox vbox;
+    private Label email_label;
+    @FXML
+    private Label labelTotalDelivered;
+    @FXML
+    private Label labelTotalOrders;
+    @FXML
+    private Label labelTotalPendingOrders;
+    @FXML
+    private Label labelTotalRejectedOrders;
 
+    //-> Buttons
     @FXML
     private Button btn_Logout;
+
+
+    //--> Functions
 
     //--> Switching Pane
     @FXML
     void overview(ActionEvent event) {
+        paneOverview.setVisible(true);
         stackpane.getChildren().setAll(paneOverview);
     }
 
     @FXML
     void allOrders(ActionEvent event) {
+        paneAllOrders.setVisible(true);
         stackpane.getChildren().setAll(paneAllOrders);
     }
 
     @FXML
     void feedback(ActionEvent event) {
+        paneCustomerFeedback.setVisible(true);
         stackpane.getChildren().setAll(paneCustomerFeedback);
-
     }
 
     @FXML
     void addItem(ActionEvent event) {
+        paneAddItem.setVisible(true);
         stackpane.getChildren().setAll(paneAddItem);
-
     }
 
     @FXML
     void addUser(ActionEvent event) {
+        paneAddUser.setVisible(true);
         stackpane.getChildren().setAll(paneAddUser);
-
     }
 
     @FXML
@@ -144,7 +120,7 @@ public class Home {
         //-> Close Home Window
         Stage stage = (Stage) btn_Logout.getScene().getWindow();
         stage.close();
-        //-> Load Login Page
+        //-> Load Login Window
         AnchorPane Login_Page =  FXMLLoader.load(HelloApplication.class.getResource("Index.fxml"));
         Stage newStage = new Stage();
         Scene newScene = new Scene(Login_Page,388, 483);
@@ -159,10 +135,26 @@ public class Home {
 
     //------------------------------------------
     @FXML
+    void add_Item(ActionEvent event){
+
+    }
+    @FXML
     void add_User(ActionEvent event) {
 
     }
 
+
+
+    //--------------------------- Initialize ---------------------------
+    public void initialize() {
+        //-> Disable all panes Except OverView
+        paneAllOrders.setVisible(false);paneCustomerFeedback.setVisible(false);paneAddItem.setVisible(false);paneAddUser.setVisible(false);
+        paneOverview.setVisible(true);
+
+        
+
+
+    }
 
 
 

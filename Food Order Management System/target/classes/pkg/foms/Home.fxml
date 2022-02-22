@@ -186,7 +186,7 @@
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="paneAddItem" prefHeight="611.0" prefWidth="793.0">
+            <Pane fx:id="paneAddItem" prefHeight="611.0" prefWidth="793.0" visible="false">
                <children>
                   <ImageView fitHeight="576.0" fitWidth="839.0" opacity="0.46" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -229,7 +229,7 @@
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="paneCustomerFeedback" prefHeight="611.0" prefWidth="793.0">
+            <Pane fx:id="paneCustomerFeedback" prefHeight="611.0" prefWidth="793.0" visible="false">
                <children>
                   <ImageView fitHeight="631.0" fitWidth="867.0" opacity="0.46" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -252,7 +252,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="paneAllOrders" prefHeight="611.0" prefWidth="793.0">
+            <Pane fx:id="paneAllOrders" prefHeight="611.0" prefWidth="793.0" visible="false">
                <children>
                   <ImageView fitHeight="597.0" fitWidth="814.0" opacity="0.46" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -276,7 +276,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="paneOverview" prefHeight="611.0" prefWidth="793.0">
+            <Pane fx:id="paneOverview" prefHeight="611.0" prefWidth="793.0" visible="false">
                <children>
                   <ImageView fitHeight="611.0" fitWidth="867.0" pickOnBounds="true" preserveRatio="true">
                      <image>

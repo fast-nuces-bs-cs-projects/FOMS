@@ -18,9 +18,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="home_window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkg.foms.Controller.Home">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkg.foms.Controller.Home">
    <children>
-      <VBox fx:id="vbox" alignment="TOP_CENTER" prefHeight="576.0" prefWidth="258.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="258.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="profImg" fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -84,7 +84,7 @@
                </graphic>
             </Button>
             <Line endX="100.0" startX="-100.0" stroke="WHITE" />
-            <Button fx:id="create_folder" graphicTextGap="10.0" mnemonicParsing="false" onAction="#addItem" prefHeight="42.0" prefWidth="259.0" text="   Add Item                  " textAlignment="CENTER" textFill="WHITE">
+            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#addItem" prefHeight="42.0" prefWidth="259.0" text="   Add Item                  " textAlignment="CENTER" textFill="WHITE">
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -173,20 +173,20 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txt_imgPath" disable="true" editable="false" layoutX="131.0" layoutY="281.0" prefHeight="25.0" prefWidth="271.0" />
+                  <TextField fx:id="txt_ImgPathUser" disable="true" editable="false" layoutX="131.0" layoutY="281.0" prefHeight="25.0" prefWidth="271.0" />
                   <Button fx:id="btn_uploadUserImg" layoutX="414.0" layoutY="280.0" mnemonicParsing="false" text="Upload Image" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_addUser" layoutX="310.0" layoutY="340.0" mnemonicParsing="false" onAction="#add_User" prefHeight="25.0" prefWidth="92.0" text="Add User" textFill="WHITE">
+                  <Button layoutX="310.0" layoutY="340.0" mnemonicParsing="false" onAction="#add_User" prefHeight="25.0" prefWidth="92.0" text="Add User" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="paneAddItem" prefHeight="611.0" prefWidth="793.0">
+            <Pane fx:id="paneAddItem" prefHeight="611.0" prefWidth="793.0" visible="false">
                <children>
                   <ImageView fitHeight="576.0" fitWidth="839.0" opacity="0.46" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -216,20 +216,20 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txt_ImgPath" disable="true" editable="false" layoutX="157.0" layoutY="338.0" prefHeight="25.0" prefWidth="271.0" />
-                  <Button fx:id="btn_uploadImg" layoutX="447.0" layoutY="338.0" mnemonicParsing="false" text="Upload Image" textFill="WHITE">
+                  <TextField fx:id="txt_ImgPathItem" disable="true" editable="false" layoutX="157.0" layoutY="338.0" prefHeight="25.0" prefWidth="271.0" />
+                  <Button fx:id="btn_UploadItemImg" layoutX="447.0" layoutY="338.0" mnemonicParsing="false" text="Upload Image" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_addItem" layoutX="336.0" layoutY="409.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Add Item" textFill="WHITE">
+                  <Button layoutX="336.0" layoutY="409.0" mnemonicParsing="false" onAction="#add_Item" prefHeight="25.0" prefWidth="92.0" text="Add Item" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="paneCustomerFeedback" prefHeight="611.0" prefWidth="793.0">
+            <Pane fx:id="paneCustomerFeedback" prefHeight="611.0" prefWidth="793.0" visible="false">
                <children>
                   <ImageView fitHeight="631.0" fitWidth="867.0" opacity="0.46" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -252,7 +252,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="paneAllOrders" prefHeight="611.0" prefWidth="793.0">
+            <Pane fx:id="paneAllOrders" prefHeight="611.0" prefWidth="793.0" visible="false">
                <children>
                   <ImageView fitHeight="597.0" fitWidth="814.0" opacity="0.46" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -276,14 +276,14 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="paneOverview" prefHeight="611.0" prefWidth="793.0">
+            <Pane fx:id="paneOverview" prefHeight="611.0" prefWidth="793.0" visible="false">
                <children>
                   <ImageView fitHeight="611.0" fitWidth="867.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/background/2.jpg" />
                      </image>
                   </ImageView>
-                  <Pane fx:id="pnlMenus" prefHeight="82.0" prefWidth="793.0" stylesheets="@css/style.css" />
+                  <Pane prefHeight="82.0" prefWidth="793.0" stylesheets="@css/style.css" />
                   <Label layoutX="57.0" layoutY="25.0" text="Dashboard" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
