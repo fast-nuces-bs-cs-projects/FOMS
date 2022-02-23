@@ -2,38 +2,42 @@ package com.pkg.Controller;
 
 
 import com.pkg.Model.Mod_User;
-import com.pkg.View.Vie_User;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(path = "/user")
 public class Con_User {
 
     //--> Variables
     private String Name;
     private String Email;
     private String Password;
-    private Mod_User model_user;
-    private Vie_User view_user;
+
 
     //---> Functions
 
-    //-> Constructor
-    public Con_User(Mod_User model,Vie_User view){
-        this.model_user = model;
-        this.view_user  = view;
+    //-> Get All Users
+    @GetMapping(path= "/", produces = "application/json")
+    public String getAllUser(){
+        return "User Details";
     }
 
-    //-> Setter Functions
-    public void setName(String name) {this.Name = name;}
-    public void setEmail(String email) {this.Email = email;}
-    public void setPassword(String password) {this.Password = password;}
+    @PostMapping(path = "/", consumes = "application/json", produces = "application/json")
+    public String addUser(@RequestBody String user){
 
-    //-> Getter Functions
-    public String getName() {return Name;}
-    public String getEmail() {return Email;}
-    public String getPassword() {return Password;}
+        JSONObject userInfo = new JSONObject(user);
+
+        //controller_user.setName(String.valueOf(userInfo.get("Name")));
+        //controller_user.setEmail(String.valueOf(userInfo.get("Email")));
+        //controller_user.setPassword(String.valueOf(userInfo.get("Pswd")));
 
 
+        //System.out.println(userInfo.get("Name"));
+        //model_user.addUser("Rohan","@mail.com","1234","Img");
+
+        return "ddf";
+    }
 
 
 
