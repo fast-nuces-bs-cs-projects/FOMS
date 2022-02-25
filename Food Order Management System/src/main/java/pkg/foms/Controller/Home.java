@@ -13,10 +13,15 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.json.JSONException;
+import pkg.foms.Api.User;
 import pkg.foms.HelloApplication;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Objects;
 
 public class Home {
@@ -82,6 +87,9 @@ public class Home {
     //-> Message box
     Alert msg_box = new Alert(Alert.AlertType.NONE);
 
+    //-> Class Call
+    User ApiUser = new User();
+
 
     //--> Functions
 
@@ -136,8 +144,7 @@ public class Home {
     void displayMessageBox(String msg,String Type){
         msg_box.setAlertType(Alert.AlertType.valueOf(Type));
         msg_box.setContentText(msg);
-        msg_box.initStyle(StageStyle.UTILITY);
-        msg_box.show();
+        msg_box.showAndWait();
     }
 
 
@@ -162,12 +169,45 @@ public class Home {
             displayMessageBox("Please Complete all fields ..!!","WARNING");
         }
         else{
+
             displayMessageBox("Item added successfully ..!!","WARNING");
         }
 
 
     }
 
+    //--------------------------- Add User ---------------------------
+    @FXML
+    void uploadUserImg(ActionEvent event){
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image", "*.png*"));
+        File file = fc.showOpenDialog(null);
+        //->Set Image Path
+        txt_ImgPathUser.setText(String.valueOf(file.getAbsoluteFile()));
+    }
+
+    @FXML
+    void add_User(ActionEvent event) throws IOException, URISyntaxException, JSONException {
+        String Name  = txt_name.getText();
+        String Email = txt_email.getText();
+        String Pswd  = txt_pswd.getText();
+        Path UserImgPath = Path.of(txt_ImgPathUser.getText());
+
+        if(Name.isEmpty()) {displayMessageBox("Please input name ..!!","WARNING");}
+        else if(Email.isEmpty()){displayMessageBox("Please input valid mail ..!!","WARNING");}
+        else if(Pswd.isEmpty()){displayMessageBox("Please input password ..!!","WARNING");}
+        else if(!Files.exists(UserImgPath)){displayMessageBox("File not exists ..!!","WARNING");}
+        else{
+            String msg = ApiUser.ApiAddUser(Name,Email,Pswd,UserImgPath);
+            displayMessageBox(msg,"WARNING");
+            if(msg.equals("Registered Successfully ..!!")){
+                txt_name.setText("");
+                txt_email.setText("");
+                txt_pswd.setText("");
+                txt_ImgPathUser.setText("");
+            }
+        }
+    }
 
 
 
@@ -184,10 +224,7 @@ public class Home {
 
 
 
-    @FXML
-    void add_User(ActionEvent event) {
 
-    }
 
 
 

@@ -13,4 +13,9 @@
       <module name="Food Order Management System" target="11" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Food Order Management System" options="" />
+    </option>
+  </component>
 </project>

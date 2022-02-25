@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 import pkg.foms.HelloApplication;
 
 import java.io.File;
@@ -19,17 +20,17 @@ import java.util.Objects;
 
 public class Index {
 
-    @FXML
-    private Pane Signin_Pane;
-
+    //-> Variables
     @FXML
     private TextField signin_username;
-
     @FXML
     private PasswordField signin_pswd;
 
-    @FXML
-    private Button submit;
+    //-> Functions
+    public JSONObject verifyCredentials(String Email,String Pswd){
+
+    }
+
 
     //-> Change UI from Index to Home
     @FXML

@@ -12,7 +12,8 @@ CREATE TABLE Users(
     Email    varchar(50),
     Pswd     varchar(256),
     Img      varchar(50),
-    PRIMARY KEY (ID)
+    PRIMARY KEY (ID),
+	UNIQUE (Email)
     
 );
 
@@ -65,4 +66,4 @@ CREATE TABLE Orders (
 
 
 
-INSERT INTO `users`(`Name`, `Email`, `Pswd`, `Img`) VALUES ('Admin','admin@gmail.com','1234','img');
+ 
