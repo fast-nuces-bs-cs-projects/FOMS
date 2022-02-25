@@ -32,41 +32,22 @@ public class User {
 
     public String ApiAddUser(String Name, String Email, String Pswd, Path UserImgPath) throws IOException, URISyntaxException, JSONException {
 
-
-
         String url = "http://127.0.0.1:8080/user/";
-
 
         // Now creating byte array of same length as file
         byte[] bytes = Files.readAllBytes(Paths.get(String.valueOf(UserImgPath)));
-
         String s = Base64.getEncoder().encodeToString(bytes);
-
-
         HttpClient httpclient = HttpClients.createDefault();
         HttpPost httppost = new HttpPost(url);
-
         // Request parameters and other properties.
         List<NameValuePair> params = new ArrayList<NameValuePair>(2);
         params.add(new BasicNameValuePair("Name", Name));
         params.add(new BasicNameValuePair("Email", Email));
         params.add(new BasicNameValuePair("Pswd", Pswd));
         params.add(new BasicNameValuePair("file",s));
-
-
-
-
         httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-
-        //Execute and get the response.
-        //HttpResponse response = httpclient.execute(httppost);
-        //HttpEntity entity = response.getEntity();
-        //System.out.println(response.getStatusLine().getReasonPhrase());
         ResponseHandler<String> responseHandler=new BasicResponseHandler();
         String responseBody = httpclient.execute(httppost, responseHandler);
-
-
-
         return responseBody;
     }
 

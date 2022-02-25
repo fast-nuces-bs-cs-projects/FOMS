@@ -80,15 +80,17 @@ public class Mod_User {
             statement.setString(2, pswd);
             ResultSet result = statement.executeQuery();
             while(result.next()){
+                userInfo.put("msg","Valid Credentials ..!!");
                 userInfo.put("ID",result.getString("ID"));
                 userInfo.put("Name",result.getString("Name"));
                 userInfo.put("Email",result.getString("Email"));
-                userInfo.put("Img", "/UserImg/"+result.getString("Img"));
+                userInfo.put("Img", "http://localhost:8080/UserImg/"+result.getString("Img"));
             }
         }
         catch (SQLException e){
             e.getErrorCode();
         }
+
         return userInfo;
     }
 

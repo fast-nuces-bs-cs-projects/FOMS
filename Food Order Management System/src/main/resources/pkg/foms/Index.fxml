@@ -28,7 +28,7 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </PasswordField>
-            <Button layoutX="104.0" layoutY="241.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #264852;" text="Login" textFill="WHITE">
+            <Button fx:id="submit" layoutX="104.0" layoutY="241.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #264852;" text="Login" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>

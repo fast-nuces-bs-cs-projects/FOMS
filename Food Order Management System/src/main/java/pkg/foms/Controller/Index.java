@@ -4,13 +4,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import org.json.JSONObject;
+import pkg.foms.Api.Login;
 import pkg.foms.HelloApplication;
+import pkg.foms.Modal.Mod_Login;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -25,15 +31,19 @@ public class Index {
     @FXML
     private Button submit;
 
-    //-> Functions
-    public void verifyCredentials(String Email, String Pswd){
 
-    }
 
+    //-> Message box
+    Alert msg_box = new Alert(Alert.AlertType.NONE);
+
+    //-> Call Class
+    Login login = new Login();
+    Mod_Login modalLogin = new Mod_Login();
+
+    //--> Functions
 
     //-> Change UI from Index to Home
-    @FXML
-    void login(ActionEvent event) throws IOException {
+    private void load_Dashboard() throws IOException {
         //-> Close Index Window
         Stage stage = (Stage) submit.getScene().getWindow();
         stage.close();
@@ -46,6 +56,34 @@ public class Index {
         newStage.setResizable(false);
         newStage.setScene(newScene);
         newStage.show();
+
+
+    }
+
+
+
+
+    @FXML
+    void login(ActionEvent event) throws IOException, JSONException {
+        String email = signin_username.getText();
+        String pswd  = signin_pswd.getText();
+
+        String result = login.verifyCredentials(email,pswd);
+
+        try {
+            JSONObject  userInfo = new JSONObject(result);
+            modalLogin.setId(String.valueOf(userInfo.get("ID")));
+            modalLogin.setUserName(String.valueOf(userInfo.get("Name")));
+            modalLogin.setEmail(String.valueOf(userInfo.get("Email")));
+            modalLogin.setImage(String.valueOf(userInfo.get("Img")));
+            load_Dashboard();
+        } catch (JSONException e) {
+            msg_box.setAlertType(Alert.AlertType.ERROR);
+            msg_box.setContentText("Invalid Credentials ..!!"+"\n");
+            msg_box.showAndWait();
+        }
+
+
     }
 
 }

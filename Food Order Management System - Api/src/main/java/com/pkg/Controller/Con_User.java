@@ -20,7 +20,7 @@ import java.util.Map;
 public class Con_User {
 
     //--> Variables
-    public static String UPLOADED_FOLDER = System.getProperty("user.dir") + "/src/main/resources/public/UserImg/";
+    private String UPLOADED_FOLDER = System.getProperty("user.dir") + "/src/main/resources/public/UserImg/";
     Mod_User model_user = new Mod_User();
 
     //--> Functions

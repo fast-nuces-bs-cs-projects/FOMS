@@ -14,12 +14,19 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.json.JSONException;
+import org.json.JSONObject;
+import pkg.foms.Api.Item;
 import pkg.foms.Api.User;
 import pkg.foms.HelloApplication;
+import pkg.foms.Modal.Mod_Login;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
@@ -88,7 +95,9 @@ public class Home {
     Alert msg_box = new Alert(Alert.AlertType.NONE);
 
     //-> Class Call
+    Mod_Login modalLogin = new Mod_Login();
     User ApiUser = new User();
+    Item ApiItem = new Item();
 
 
     //--> Functions
@@ -160,17 +169,21 @@ public class Home {
 
 
     @FXML
-    void add_Item(ActionEvent event){
+    void add_Item(ActionEvent event) throws JSONException, IOException, URISyntaxException {
         String ItemName      = txt_ItemName.getText();
         String ItemDetail    = txt_ItemDetail.getText();
-        String ItemImagePath = txt_ImgPathItem.getText();
+        Path ItemImagePath = Path.of(txt_ImgPathItem.getText());
 
-        if(ItemName.isEmpty() || ItemDetail.isEmpty() || ItemImagePath.isEmpty()) {
-            displayMessageBox("Please Complete all fields ..!!","WARNING");
-        }
+        if(ItemName.isEmpty() || ItemDetail.isEmpty()) {displayMessageBox("Please Complete all fields ..!!","WARNING");}
+        else if(!Files.exists(ItemImagePath)){displayMessageBox("File not exists ..!!","WARNING");}
         else{
-
-            displayMessageBox("Item added successfully ..!!","WARNING");
+            String msg = ApiItem.ApiAddItem(ItemName,ItemDetail,ItemImagePath);
+            displayMessageBox(msg,"WARNING");
+            if(msg.equals("Added Successfully ..!!")){
+                txt_ItemName.setText("");
+                txt_ItemDetail.setText("");
+                txt_ImgPathItem.setText("");
+            }
         }
 
 
@@ -212,13 +225,18 @@ public class Home {
 
 
     //--------------------------- Initialize ---------------------------
-    public void initialize() {
+    public void initialize() throws JSONException, FileNotFoundException, MalformedURLException {
         //-> Disable all panes Except OverView
         paneAllOrders.setVisible(false);paneCustomerFeedback.setVisible(false);paneAddItem.setVisible(false);paneAddUser.setVisible(false);
         paneOverview.setVisible(true);
 
-
-
+        //-> Load Info
+        username.setText(modalLogin.getUserName());
+        email_label.setText(modalLogin.getEmail());
+        URL url = new URL(modalLogin.getImage());
+        System.out.println(url);
+        Image image = new Image(String.valueOf(url));
+        profImg.setImage(image);
 
     }
 
