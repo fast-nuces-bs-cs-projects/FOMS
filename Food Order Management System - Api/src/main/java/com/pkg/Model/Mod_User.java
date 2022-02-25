@@ -1,5 +1,6 @@
 package com.pkg.Model;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.*;
@@ -49,7 +50,7 @@ public class Mod_User {
     }
 
     //-> Get All User
-    public String getAllUser(){
+    public String getAllUser() throws JSONException {
         JSONObject userList = new JSONObject();
         try{
             String Query = "SELECT * FROM `users`";

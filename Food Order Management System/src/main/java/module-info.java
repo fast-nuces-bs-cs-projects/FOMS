@@ -12,7 +12,7 @@ module pkg.foms {
     requires java.sql;
     requires org.apache.httpcomponents.httpcore;
     requires org.apache.httpcomponents.httpclient;
-    requires android.json;
+    requires json;
 
     opens pkg.foms to javafx.fxml;
     exports pkg.foms;

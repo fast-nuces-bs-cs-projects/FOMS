@@ -9,12 +9,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.json.JSONObject;
 import pkg.foms.HelloApplication;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -25,9 +22,11 @@ public class Index {
     private TextField signin_username;
     @FXML
     private PasswordField signin_pswd;
+    @FXML
+    private Button submit;
 
     //-> Functions
-    public JSONObject verifyCredentials(String Email,String Pswd){
+    public void verifyCredentials(String Email, String Pswd){
 
     }
 

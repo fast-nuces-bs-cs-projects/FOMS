@@ -3,15 +3,8 @@ package com.pkg.Controller;
 
 
 import com.pkg.Model.Mod_User;
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-import org.json.JSONObject;
-import org.springframework.util.StringUtils;
+import org.json.JSONException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.Map;
-import java.util.Scanner;
+
 
 
 @RestController
@@ -34,7 +27,7 @@ public class Con_User {
 
     //-> Get All Users
     @GetMapping(path = "/", produces = "application/json")
-    public String getAllUser() {
+    public String getAllUser() throws JSONException {
         return model_user.getAllUser();
     }
 

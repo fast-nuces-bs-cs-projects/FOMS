@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="388.0" style="-fx-background-color: #0e191c; -fx-border-color: #1d3a42;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkg.foms.Controller.Index">
    <children>
-      <Pane fx:id="Signin_Pane" layoutX="21.0" layoutY="33.0" prefHeight="418.0" prefWidth="347.0" style="-fx-background-color: #328ba8;">
+      <Pane layoutX="21.0" layoutY="33.0" prefHeight="418.0" prefWidth="347.0" style="-fx-background-color: #328ba8;">
          <children>
             <Text fill="WHITE" layoutX="121.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sigin In" wrappingWidth="104.13665771484375">
                <font>
@@ -28,7 +28,7 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="submit" layoutX="104.0" layoutY="241.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #264852;" text="Login" textFill="WHITE">
+            <Button layoutX="104.0" layoutY="241.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #264852;" text="Login" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
