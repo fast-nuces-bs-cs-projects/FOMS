@@ -1,8 +1,6 @@
 package com.pkg.Controller;
 
-import com.pkg.Model.Mod_Customer;
 import com.pkg.Model.Mod_Item;
-import com.pkg.Model.Mod_User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

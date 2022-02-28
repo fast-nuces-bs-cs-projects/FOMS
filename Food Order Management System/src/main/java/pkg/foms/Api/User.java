@@ -41,10 +41,11 @@ public class User {
         HttpPost httppost = new HttpPost(url);
         // Request parameters and other properties.
         List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-        params.add(new BasicNameValuePair("Name", Name));
+        params.add(new BasicNameValuePair("Name" , Name));
         params.add(new BasicNameValuePair("Email", Email));
-        params.add(new BasicNameValuePair("Pswd", Pswd));
-        params.add(new BasicNameValuePair("file",s));
+        params.add(new BasicNameValuePair("Pswd" , Pswd));
+        params.add(new BasicNameValuePair("Type" ,"Operator"));
+        params.add(new BasicNameValuePair("File" ,s));
         httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
         ResponseHandler<String> responseHandler=new BasicResponseHandler();
         String responseBody = httpclient.execute(httppost, responseHandler);
