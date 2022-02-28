@@ -2,12 +2,11 @@ package com.pkg.View;
 
 import com.pkg.Controller.Con_User;
 import com.pkg.Model.Mod_User;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.json.JSONException;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/user")
@@ -18,14 +17,16 @@ public class View_User {
     View_User view_user;
     Con_User controller_User = new Con_User(model_user,view_user);
 
+    //-> Get All Users
+    @GetMapping(path = "/", produces = "application/json")
+    public String UserList() throws JSONException {
+        return controller_User.userList();
+    }
+
     //-> Add User i.e Operator or Customer
     @PostMapping(path = "/", produces = "application/json")
-    public Boolean addUser(@RequestParam("Name") String Name,
-                           @RequestParam("Email") String Email,
-                           @RequestParam("Pswd") String Pswd,
-                           @RequestParam("Type") String Type,
-                           @RequestParam("File") String File,
-                           @RequestParam(value = "PhoneNo",defaultValue = "NULL") String PhoneNo,
+    public Boolean addUser(@RequestParam("Name") String Name, @RequestParam("Email") String Email, @RequestParam("Pswd") String Pswd,
+                           @RequestParam("Type") String Type, @RequestParam("File") String File, @RequestParam(value = "PhoneNo",defaultValue = "NULL") String PhoneNo,
                            @RequestParam(value = "Address",defaultValue = "NULL") String Add) throws IOException {
 
         controller_User.setName(Name);
@@ -41,6 +42,13 @@ public class View_User {
     }
 
     //-> Verify Credentials of Operator & Customer
+    @PostMapping(path = "/login", produces = "application/json")
+    public Map<String, String> login(@RequestParam("Email") String Email, @RequestParam("Pswd") String Pswd) {
+        controller_User.setEmail(Email);
+        controller_User.setPswd(Pswd);
+
+        return controller_User.verifyCredentials();
+    }
 
 
 

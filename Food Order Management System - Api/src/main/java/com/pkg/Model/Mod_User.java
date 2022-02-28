@@ -1,13 +1,15 @@
 package com.pkg.Model;
 
 import com.pkg.Connect_Db;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
-import java.util.Base64;
+import java.util.*;
 
 public class Mod_User {
 
@@ -50,7 +52,31 @@ public class Mod_User {
         Files.write(path, bytes);
         File = ImageFileName;}
 
-    public boolean add_user(){
+    //-> All Users
+    public String get_all_user() throws JSONException {
+        JSONObject userList = new JSONObject();
+        try{
+            String Query = "SELECT * FROM `users`";
+            PreparedStatement statement = con_db.Connect_Db().prepareStatement(Query);
+            ResultSet result = statement.executeQuery();
+            while(result.next()){
+                List<String> temp = new ArrayList<>();
+                temp.add(result.getString("Name"));
+                temp.add(result.getString("Email"));
+                temp.add(result.getString("Type"));
+                temp.add(result.getString("Created_at"));
+                userList.put(result.getString("ID"),temp);
+            }
+            return String.valueOf(userList);
+        }
+        catch (SQLException e){
+            e.getErrorCode();
+        }
+        return null;
+    }
+
+    //-> Add Operator/Customer
+    public Boolean add_user(){
         try {
             String Query = "INSERT INTO `users`(`Name`, `Email`, `Pswd`, `Type`, `Created_at`, `Img`) VALUES (?,?,?,?,?,?)";
             PreparedStatement statement =  con_db.Connect_Db().prepareStatement(Query);
@@ -86,5 +112,27 @@ public class Mod_User {
     }
 
     //-> Login User
+    public Map<String, String> verify_credentials(){
+        HashMap<String, String> userInfo = new HashMap<String, String>();
+        try{
+            String Query = "SELECT * FROM `users` Where `Email` = ? and `Pswd` = ?";
+            PreparedStatement statement = con_db.Connect_Db().prepareStatement(Query);
+            statement.setString(1, getEmail());
+            statement.setString(2, getPswd());
+            ResultSet result = statement.executeQuery();
+            while(result.next()){
+                userInfo.put("ID",result.getString("ID"));
+                userInfo.put("Name",result.getString("Name"));
+                userInfo.put("Email",result.getString("Email"));
+                userInfo.put("Type", result.getString("Type"));
+                userInfo.put("Img", "http://localhost:8080/UserImg/"+result.getString("Img"));
+            }
+        }
+        catch (SQLException e){
+            e.getErrorCode();
+        }
+
+        return userInfo;
+    }
 
 }

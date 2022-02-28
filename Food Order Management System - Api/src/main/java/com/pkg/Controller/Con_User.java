@@ -1,12 +1,14 @@
 package com.pkg.Controller;
 import com.pkg.Model.Mod_User;
 import com.pkg.View.View_User;
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 public class Con_User {
 
@@ -22,7 +24,6 @@ public class Con_User {
     }
 
     //-> Getter Functions
-    public String getUPLOADED_FOLDER() {return UPLOADED_FOLDER;}
     public String getName() {return model_user.getName();}
     public String getEmail() {return model_user.getEmail();}
     public String getAdd() {return model_user.getAdd();}
@@ -39,6 +40,11 @@ public class Con_User {
     public void setType(String type) {model_user.setType(type);}
     public void setFile(String file) throws IOException {model_user.setFile(file);}
 
+    //-> Get User List
+    public String userList() throws JSONException {
+        return model_user.get_all_user();
+    }
+
     //-> Add Operator
     public Boolean addOperator(){
         return model_user.add_user();
@@ -51,5 +57,10 @@ public class Con_User {
 
         if(a == true && b== true){return true;}
         else{return false;}
+    }
+
+    //-> Verify Credentials
+    public Map<String, String> verifyCredentials(){
+        return model_user.verify_credentials();
     }
 }
