@@ -47,13 +47,13 @@ public class Mod_User {
     public void setPswd(String pswd) {Pswd = pswd;}
     public void setType(String type) {Type = type;}
     public void setFile(String file) throws IOException {
-        /*String ImageFileName = getName()+".png";
         byte[] bytes = Base64.getDecoder().decode(file);
-        Path path = Paths.get(UPLOADED_FOLDER + ImageFileName);
+        Path path = Paths.get(UPLOADED_FOLDER + getName()+".png");
         Files.write(path, bytes);
-        File = ImageFileName;*/
-        File = file;
+        File = getName()+".png";
     }
+
+    //-->  Get Request
 
     //-> All Users
     public String get_all_user() throws JSONException {
@@ -77,6 +77,10 @@ public class Mod_User {
         }
         return null;
     }
+
+
+
+    //-->  Post Request
 
     //-> Add Operator/Customer
     public Boolean add_user(){
@@ -128,9 +132,7 @@ public class Mod_User {
                 userInfo.put("Name",result.getString("Name"));
                 userInfo.put("Email",result.getString("Email"));
                 userInfo.put("Type", result.getString("Type"));
-                Blob blob = result.getBlob("Img");
-                InputStream inputStream = blob.getBinaryStream();
-                userInfo.put("Img", inputStream);
+                userInfo.put("Img", "http://localhost:8080/UserImg/"+result.getString("Img"));
             }
         }
         catch (SQLException e){
@@ -139,5 +141,8 @@ public class Mod_User {
 
         return userInfo;
     }
+
+
+
 
 }

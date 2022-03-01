@@ -215,13 +215,10 @@ public class Home {
         //-> Load Info
         username.setText(modalLogin.getUserName());
         email_label.setText(modalLogin.getEmail());
-        InputStream imageFile = modalLogin.getImage();
 
 
-
-
-        Image image = new Image(imageFile);
-        profImg.setImage(image);
+        //Image image = new Image(modalLogin.getImage());
+        //profImg.setImage(image);
 
     }
 

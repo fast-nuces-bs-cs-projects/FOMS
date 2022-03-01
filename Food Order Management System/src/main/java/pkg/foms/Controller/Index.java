@@ -76,7 +76,7 @@ public class Index {
             modalLogin.setId(String.valueOf(userInfo.get("ID")));
             modalLogin.setUserName(String.valueOf(userInfo.get("Name")));
             modalLogin.setEmail(String.valueOf(userInfo.get("Email")));
-            modalLogin.setImage((FileInputStream) userInfo.get("Img"));
+            modalLogin.setImage(String.valueOf(userInfo.get("Img")));
             load_Dashboard();
         } catch (JSONException e) {
             msg_box.setAlertType(Alert.AlertType.ERROR);

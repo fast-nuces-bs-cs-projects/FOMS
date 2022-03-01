@@ -1,7 +1,10 @@
 package pkg.foms.Modal;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class Mod_Login {
 
@@ -11,13 +14,13 @@ public class Mod_Login {
     private static String Id;
     private static String UserName ;
     private static String Email;
-    private static FileInputStream Image;
+    private static String Image;
 
     //-> Setter
     public void setId(String id) {Id = id;}
     public void setUserName(String userName) {UserName = userName;}
     public void setEmail(String email) {Email = email;}
-    public void setImage(FileInputStream image) {
+    public void setImage(String image) {
         //byte[] bytes = Base64.getDecoder().decode(image);
         System.out.println(image);
         Image = image;
@@ -27,7 +30,11 @@ public class Mod_Login {
     public String getId() {return Id;}
     public String getUserName() {return UserName;}
     public String getEmail() {return Email;}
-    public InputStream getImage() {return Image;}
+    public FileInputStream  getImage() throws FileNotFoundException {
+        FileInputStream streamimageFile = new FileInputStream(Image);
+
+        return streamimageFile;
+    }
 
 
 }

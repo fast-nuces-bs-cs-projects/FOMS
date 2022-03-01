@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 @RestController
@@ -17,17 +18,15 @@ public class View_User {
     View_User view_user;
     Con_User controller_User = new Con_User(model_user,view_user);
 
+    //--> Get Request
+
     //-> Get All Users
     @GetMapping(path = "/", produces = "application/json")
     public String UserList() throws JSONException {
         return controller_User.userList();
     }
 
-    //-> Get User Image
-    @GetMapping(path = "/", produces = "application/json")
-    public String UserImage(@RequestParam("Email") String Email) throws JSONException {
-        return controller_User.userList();
-    }
+    //--> Post Request
 
     //-> Add User i.e Operator or Customer
     @PostMapping(path = "/", produces = "application/json")
@@ -54,6 +53,7 @@ public class View_User {
         controller_User.setPswd(Pswd);
         return controller_User.verifyCredentials();
     }
+
 
 
 
