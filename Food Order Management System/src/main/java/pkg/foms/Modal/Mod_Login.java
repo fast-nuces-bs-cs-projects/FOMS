@@ -1,14 +1,6 @@
 package pkg.foms.Modal;
 
-import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-
 public class Mod_Login {
-
-
 
     //-> Variables
     private static String Id;

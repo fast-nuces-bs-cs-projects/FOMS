@@ -14,11 +14,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.JSONException;
 import org.json.JSONObject;
-import pkg.foms.Api.Login;
 import pkg.foms.HelloApplication;
 import pkg.foms.Modal.Mod_Login;
+import pkg.foms.Modal.Mode_User;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -38,9 +37,9 @@ public class Index {
     Alert msg_box = new Alert(Alert.AlertType.NONE);
 
     //-> Call Class
-    Login login = new Login();
+    //Login login = new Login();
     Mod_Login modalLogin = new Mod_Login();
-
+    Mode_User modeUser = new Mode_User();
     //--> Functions
 
     //-> Change UI from Index to Home
@@ -61,15 +60,11 @@ public class Index {
 
     }
 
-
-
-
     @FXML
     void login(ActionEvent event) throws IOException, JSONException {
-        String email = signin_username.getText();
-        String pswd  = signin_pswd.getText();
-
-        String result = login.verifyCredentials(email,pswd);
+        modeUser.setEmail(signin_username.getText());
+        modeUser.setPswd(signin_pswd.getText());
+        String result = modeUser.verifyCredentials();
 
         try {
             JSONObject  userInfo = new JSONObject(result);

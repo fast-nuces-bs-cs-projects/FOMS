@@ -36,6 +36,11 @@ public class Mode_User {
         return api_user.ApiAddUser(getName(),getEmail(),getPswd(),getUserImagePath());
     }
 
+    //-> Verify User
+    public String verifyCredentials() throws IOException {
+        return api_user.ApiLoginUser(getEmail(),getPswd());
+    }
+
 
 
 
