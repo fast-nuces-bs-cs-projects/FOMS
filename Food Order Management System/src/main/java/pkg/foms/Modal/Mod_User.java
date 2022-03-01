@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 
-public class Mode_User {
+public class Mod_User {
 
     //-> Class Calls
     Api_User api_user = new Api_User();

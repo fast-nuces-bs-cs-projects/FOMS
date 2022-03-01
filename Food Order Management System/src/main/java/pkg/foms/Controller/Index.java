@@ -16,7 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import pkg.foms.HelloApplication;
 import pkg.foms.Modal.Mod_Login;
-import pkg.foms.Modal.Mode_User;
+import pkg.foms.Modal.Mod_User;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -39,7 +39,7 @@ public class Index {
     //-> Call Class
     //Login login = new Login();
     Mod_Login modalLogin = new Mod_Login();
-    Mode_User modeUser = new Mode_User();
+    Mod_User modeUser = new Mod_User();
     //--> Functions
 
     //-> Change UI from Index to Home

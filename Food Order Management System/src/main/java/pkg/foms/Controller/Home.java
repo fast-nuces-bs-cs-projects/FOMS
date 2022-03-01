@@ -12,13 +12,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.json.JSONException;
-import org.json.JSONObject;
+
 import pkg.foms.Api.Item;
 import pkg.foms.HelloApplication;
 import pkg.foms.Modal.Mod_Login;
-import pkg.foms.Modal.Mode_User;
+import pkg.foms.Modal.Mod_User;
+
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -86,7 +86,7 @@ public class Home {
 
 
     //-> Call Class
-    Mode_User mode_user = new Mode_User();
+    Mod_User mode_user = new Mod_User();
 
 
     //-> Buttons
