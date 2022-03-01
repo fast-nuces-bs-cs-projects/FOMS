@@ -14,7 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.JSONException;
 
-import pkg.foms.Api.Item;
+import pkg.foms.Api.Api_Item;
 import pkg.foms.HelloApplication;
 import pkg.foms.Modal.Mod_Login;
 import pkg.foms.Modal.Mod_User;
@@ -55,18 +55,16 @@ public class Home {
     public PasswordField txt_pswd;
     @FXML
     public TextField txt_ImgPathUser;
-    @FXML
-    public Button btn_uploadUserImg;
 
     //-> Pane : Add Item
     @FXML
     public TextField txt_ItemName;
     @FXML
+    public TextField txt_ItemPrice;
+    @FXML
     public TextArea txt_ItemDetail;
     @FXML
     public TextField txt_ImgPathItem;
-    @FXML
-    public Button btn_UploadItemImg;
 
     //-> Label
     @FXML
@@ -84,14 +82,14 @@ public class Home {
     @FXML
     private Label labelTotalRejectedOrders;
 
-
-    //-> Call Class
-    Mod_User mode_user = new Mod_User();
-
-
     //-> Buttons
     @FXML
     private Button btn_Logout;
+
+    //-> Call Class
+    Mod_Login modalLogin = new Mod_Login();
+    Mod_User mode_user = new Mod_User();
+    Api_Item ApiItem = new Api_Item();
 
     //-> Message box
     Alert msg_box = new Alert(Alert.AlertType.NONE);
@@ -100,11 +98,6 @@ public class Home {
         msg_box.setContentText(msg);
         msg_box.showAndWait();
     }
-
-    //-> Class Call
-    Mod_Login modalLogin = new Mod_Login();
-   // User ApiUser = new User();
-    Item ApiItem = new Item();
 
     //-> Functions
 
@@ -139,6 +132,7 @@ public class Home {
     @FXML
     void add_Item(ActionEvent event) throws JSONException, IOException, URISyntaxException {
         String ItemName      = txt_ItemName.getText();
+        String ItemPrice     = txt_ItemPrice.getText();
         String ItemDetail    = txt_ItemDetail.getText();
         Path ItemImagePath = Path.of(txt_ImgPathItem.getText());
 

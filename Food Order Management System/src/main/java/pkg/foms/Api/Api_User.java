@@ -11,28 +11,20 @@ import java.util.Base64;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 
 
 public class Api_User {
 
-    //--> Variables
-    private String url = "http://127.0.0.1:8080";
-
     //--> Call Class
     Call_Api callApi = new Call_Api();
+
     //--> Functions
 
     //-> Api Add User
     public String ApiAddUser(String Name, String Email, String Pswd, Path UserImgPath) throws IOException, URISyntaxException, JSONException {
-        String  apiurl = url+"/user/";
+        String  url = "/user/";
 
         // Now creating byte array of same length as file
         byte[] bytes = Files.readAllBytes(Paths.get(String.valueOf(UserImgPath)));
@@ -46,12 +38,12 @@ public class Api_User {
         params.add(new BasicNameValuePair("Type" ,"Operator"));
         params.add(new BasicNameValuePair("File" ,s));
 
-        return callApi.ApiPostRequest(apiurl,params);
+        return callApi.ApiPostRequest(url,params);
     }
 
     //-> Api Login User
     public String ApiLoginUser(String Email,String Pswd) throws IOException {
-        String  apiurl = url+"/user/login";
+        String url = "/user/login";
 
         // Request parameters and other properties.
         List<NameValuePair> params = new ArrayList<NameValuePair>(2);
@@ -59,7 +51,7 @@ public class Api_User {
         params.add(new BasicNameValuePair("Pswd", Pswd));
 
 
-        return callApi.ApiPostRequest(apiurl,params);
+        return callApi.ApiPostRequest(url,params);
     }
 
 }

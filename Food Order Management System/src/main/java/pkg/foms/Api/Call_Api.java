@@ -15,7 +15,7 @@ import java.util.List;
 public class Call_Api {
 
     //--> Variables
-
+    private String apiUrl = "http://127.0.0.1:8080";
 
     //--> Function
 
@@ -31,7 +31,7 @@ public class Call_Api {
     //-> Post Request
     public String ApiPostRequest(String url, List<NameValuePair> params) throws IOException {
         HttpClient httpclient = HttpClients.createDefault();
-        HttpPost httppost = new HttpPost(url);
+        HttpPost httppost = new HttpPost(apiUrl +url);
 
         httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
         ResponseHandler<String> responseHandler=new BasicResponseHandler();
