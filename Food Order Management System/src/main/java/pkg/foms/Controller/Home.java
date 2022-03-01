@@ -144,7 +144,7 @@ public class Home {
             String msg = mod_item.add_Item();
             if(msg.equals("true")){
                 displayMessageBox("Added Successfully ..!!","INFORMATION");
-                txt_name.setText("");txt_email.setText("");txt_pswd.setText("");txt_ImgPathUser.setText("");
+                txt_ItemName.setText("");txt_ItemPrice.setText("");txt_ItemDetail.setText("");txt_ImgPathItem.setText("");
             }
             else{displayMessageBox("Error ..!! Item Already Exists","WARNING");}
         }
