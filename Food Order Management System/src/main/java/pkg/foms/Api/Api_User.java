@@ -23,11 +23,15 @@ import org.json.JSONException;
 
 public class Api_User {
 
+    //--> Variables
+    private String url = "http://127.0.0.1:8080/user/";
+
+    //--> Functions
+
+    //-> Api Add User
     public String ApiAddUser(String Name, String Email, String Pswd, Path UserImgPath) throws IOException, URISyntaxException, JSONException {
 
-        String url = "http://127.0.0.1:8080/user/";
-
-        // Now creating byte array of same length as file
+         // Now creating byte array of same length as file
         byte[] bytes = Files.readAllBytes(Paths.get(String.valueOf(UserImgPath)));
         String s = Base64.getEncoder().encodeToString(bytes);
         HttpClient httpclient = HttpClients.createDefault();
@@ -45,6 +49,27 @@ public class Api_User {
         httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
         ResponseHandler<String> responseHandler=new BasicResponseHandler();
         String responseBody = httpclient.execute(httppost, responseHandler);
+        return responseBody;
+    }
+
+    //-> Api Login User
+    public String ApiLoginUser(String Email,String Pswd){
+        String url = "http://127.0.0.1:8080/user/login";
+
+        HttpClient httpclient = HttpClients.createDefault();
+        HttpPost httppost = new HttpPost(url);
+
+        // Request parameters and other properties.
+        List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+        params.add(new BasicNameValuePair("Email", Email));
+        params.add(new BasicNameValuePair("Pswd", Pswd));
+
+        httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+
+        ResponseHandler<String> responseHandler=new BasicResponseHandler();
+        String responseBody = httpclient.execute(httppost, responseHandler);
+
+
         return responseBody;
     }
 

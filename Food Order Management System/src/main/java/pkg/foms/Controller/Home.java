@@ -173,7 +173,6 @@ public class Home {
         mode_user.setPswd(txt_pswd.getText());
         mode_user.setUserImagePath(Path.of(txt_ImgPathUser.getText()));
 
-
         if(txt_name.getText().isEmpty() && txt_email.getText().isEmpty() &&
                 txt_pswd.getText().isEmpty() && txt_ImgPathItem.getText().isEmpty()){
             displayMessageBox("Please Complete all fields & Check if Image Exist on Path ..!!","WARNING");
@@ -184,7 +183,7 @@ public class Home {
                 displayMessageBox("Registered Successfully ..!!","INFORMATION");
                 txt_name.setText("");txt_email.setText("");txt_pswd.setText("");txt_ImgPathUser.setText("");
             }
-            else{displayMessageBox("Error ..!! User Already Exists or ","WARNING");}
+            else{displayMessageBox("Error ..!! User Already Exists","WARNING");}
         }
     }
 
@@ -215,10 +214,10 @@ public class Home {
         //-> Load Info
         username.setText(modalLogin.getUserName());
         email_label.setText(modalLogin.getEmail());
-
-
-        //Image image = new Image(modalLogin.getImage());
-        //profImg.setImage(image);
+        URL url = new URL(modalLogin.getImage());
+        System.out.println(url);
+        Image image = new Image(String.valueOf(url));
+        profImg.setImage(image);
 
     }
 

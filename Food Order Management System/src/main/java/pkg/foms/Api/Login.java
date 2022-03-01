@@ -27,10 +27,6 @@ public class Login {
         params.add(new BasicNameValuePair("Email", Email));
         params.add(new BasicNameValuePair("Pswd", Pswd));
 
-
-
-
-
         httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
 
         ResponseHandler<String> responseHandler=new BasicResponseHandler();

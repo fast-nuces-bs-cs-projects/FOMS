@@ -20,21 +20,13 @@ public class Mod_Login {
     public void setId(String id) {Id = id;}
     public void setUserName(String userName) {UserName = userName;}
     public void setEmail(String email) {Email = email;}
-    public void setImage(String image) {
-        //byte[] bytes = Base64.getDecoder().decode(image);
-        System.out.println(image);
-        Image = image;
-    }
+    public void setImage(String image) {Image =  image. replaceAll(" ", "%20");}
 
     //-> Getter
     public String getId() {return Id;}
     public String getUserName() {return UserName;}
     public String getEmail() {return Email;}
-    public FileInputStream  getImage() throws FileNotFoundException {
-        FileInputStream streamimageFile = new FileInputStream(Image);
-
-        return streamimageFile;
-    }
+    public String  getImage() {return Image;}
 
 
 }
