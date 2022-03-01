@@ -3,13 +3,7 @@ import com.pkg.Model.Mod_User;
 import com.pkg.View.View_User;
 import org.json.JSONException;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 
 public class Con_User {
@@ -48,8 +42,6 @@ public class Con_User {
     public String userList() throws JSONException {
         return model_user.get_all_user();
     }
-
-
 
     //--> Post Requests
 

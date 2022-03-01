@@ -19,10 +19,8 @@ public class Api_Item {
     //--> Functions
 
     //-> Api Add Item
-    public String ApiAddItem(String Name,String Price,String Detail, Path ItemImgPath) throws IOException {
-
+    public String ApiAddItem(String Name,String Detail,String Price, Path ItemImgPath) throws IOException {
         String url = "/item/";
-
         // Now creating byte array of same length as file
         byte[] bytes = Files.readAllBytes(Paths.get(String.valueOf(ItemImgPath)));
         String s = Base64.getEncoder().encodeToString(bytes);
@@ -31,7 +29,8 @@ public class Api_Item {
         List<NameValuePair> params = new ArrayList<NameValuePair>(2);
         params.add(new BasicNameValuePair("Name", Name));
         params.add(new BasicNameValuePair("Detail", Detail));
-        params.add(new BasicNameValuePair("file",s));
+        params.add(new BasicNameValuePair("Price", Price));
+        params.add(new BasicNameValuePair("File",s));
 
         return callApi.ApiPostRequest(url,params);
     }

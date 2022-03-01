@@ -33,7 +33,7 @@ public class Mod_Item {
 
     //-> Add Item
     public String add_Item() throws IOException {
-        return api_item.ApiAddItem(getItemName(),getItemPrice(),getItemDetail(),getItemImagePath());
+        return api_item.ApiAddItem(getItemName(),getItemDetail(),getItemPrice(),getItemImagePath());
     }
 
 }

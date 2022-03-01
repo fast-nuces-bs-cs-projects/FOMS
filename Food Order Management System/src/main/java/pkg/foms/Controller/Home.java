@@ -129,27 +129,26 @@ public class Home {
         txt_ImgPathItem.setText(String.valueOf(file.getAbsoluteFile()));
     }
 
-
     @FXML
     void add_Item(ActionEvent event) throws JSONException, IOException, URISyntaxException {
-        String ItemName      = txt_ItemName.getText();
-        String ItemPrice     = txt_ItemPrice.getText();
-        String ItemDetail    = txt_ItemDetail.getText();
-        Path ItemImagePath = Path.of(txt_ImgPathItem.getText());
+        mod_item.setItemName(txt_ItemName.getText());
+        mod_item.setItemPrice(txt_ItemPrice.getText());
+        mod_item.setItemDetail(txt_ItemDetail.getText());
+        mod_item.setItemImagePath(Path.of(txt_ImgPathItem.getText()));
 
-        /*if(ItemName.isEmpty() || ItemDetail.isEmpty()) {displayMessageBox("Please Complete all fields ..!!","WARNING");}
-        else if(!Files.exists(ItemImagePath)){displayMessageBox("File not exists ..!!","WARNING");}
+        if(txt_ItemName.getText().isEmpty() && txt_ItemPrice.getText().isEmpty() &&
+                txt_ItemDetail.getText().isEmpty() && txt_ImgPathItem.getText().isEmpty()){
+            displayMessageBox("Please Complete all fields & Check if Image Exist on Path ..!!","WARNING");
+        }
         else{
-            String msg = ApiItem.ApiAddItem(ItemName,ItemDetail,ItemImagePath);
-            displayMessageBox(msg,"WARNING");
-            if(msg.equals("Added Successfully ..!!")){
-                txt_ItemName.setText("");
-                txt_ItemDetail.setText("");
-                txt_ImgPathItem.setText("");
+            String msg = mod_item.add_Item();
+            if(msg.equals("true")){
+                displayMessageBox("Added Successfully ..!!","INFORMATION");
+                txt_name.setText("");txt_email.setText("");txt_pswd.setText("");txt_ImgPathUser.setText("");
             }
-        }*/
+            else{displayMessageBox("Error ..!! Item Already Exists","WARNING");}
+        }
     }
-
 
     //--------------------------- Add User ---------------------------
     @FXML

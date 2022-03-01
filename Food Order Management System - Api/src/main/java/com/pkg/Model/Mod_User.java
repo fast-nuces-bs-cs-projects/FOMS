@@ -16,9 +16,9 @@ public class Mod_User {
 
     //-> Call Class
     Connect_Db con_db = new Connect_Db();
-    private Statement s;
 
     //-> Variables
+    private Statement s;
     private String UPLOADED_FOLDER = System.getProperty("user.dir") + "/src/main/resources/public/UserImg/";
     private String Name ;
     private String Email;

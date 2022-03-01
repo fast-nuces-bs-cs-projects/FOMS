@@ -1,33 +1,52 @@
 package com.pkg.Controller;
 
 import com.pkg.Model.Mod_Item;
-import org.springframework.web.bind.annotation.PostMapping;
+import com.pkg.View.View_Item;
+import org.json.JSONException;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Base64;
 
-@RestController
-@RequestMapping(path = "/item")
+
 public class Con_Item {
 
-    //-> Variables
-    private String UPLOADED_FOLDER = System.getProperty("user.dir") + "/src/main/resources/public/FoodImg/";
-    Mod_Item mod_item = new Mod_Item();
+    //-> Call Class & Variables
+    private Mod_Item modItem;
+    private View_Item view;
 
-    @PostMapping(path = "/", produces = "application/json")
-    public String addUser(@RequestParam("Name") String Name, @RequestParam("Detail") String Detail,
-                          @RequestParam("file") String file) throws IOException {
-        //-> Decode File
-        byte[] bytes = Base64.getDecoder().decode(file);
-        Path path = Paths.get(UPLOADED_FOLDER + Name+".png");
-        Files.write(path, bytes);
-        // return string message
-        return mod_item.addItem(Name, Detail, Name+".png");
+
+    //-> Constructor
+    public Con_Item(Mod_Item model, View_Item view){
+        this.modItem = model;
+        this.view    = view;
     }
+
+    //-> Getter Functions
+    public String getItemName() {return modItem.getItemName();}
+    public String getItemDetail() {return modItem.getItemDetail();}
+    public String getPrice() {return modItem.getPrice();}
+    public String getFile() {return modItem.getFile();}
+
+    //-> Setter Functions
+    public void setItemName(String itemName) { modItem.setItemName(itemName);}
+    public void setItemDetail(String itemDetail) {modItem.setItemDetail(itemDetail);}
+    public void setPrice(String price) {modItem.setPrice(price);}
+    public void setFile(String file) throws IOException {modItem.setFile(file);}
+
+    //--> Get Requests
+
+    //-> Get User List
+    public String itemList() throws JSONException {
+        return modItem.get_all_item();
+    }
+
+
+    //--> Post Requests
+
+    //-> Add Operator
+    public Boolean addItem(){
+        return modItem.addItem();
+    }
+
 }
