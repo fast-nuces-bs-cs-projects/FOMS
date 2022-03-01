@@ -40,10 +40,14 @@ public class Con_User {
     public void setType(String type) {model_user.setType(type);}
     public void setFile(String file) throws IOException {model_user.setFile(file);}
 
+    //--> Get Requests
+
     //-> Get User List
     public String userList() throws JSONException {
         return model_user.get_all_user();
     }
+
+    //--> Post Requests
 
     //-> Add Operator
     public Boolean addOperator(){

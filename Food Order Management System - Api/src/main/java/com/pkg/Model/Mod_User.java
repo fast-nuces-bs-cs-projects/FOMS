@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -46,11 +47,13 @@ public class Mod_User {
     public void setPswd(String pswd) {Pswd = pswd;}
     public void setType(String type) {Type = type;}
     public void setFile(String file) throws IOException {
-        String ImageFileName = getEmail()+".png";
+        /*String ImageFileName = getName()+".png";
         byte[] bytes = Base64.getDecoder().decode(file);
         Path path = Paths.get(UPLOADED_FOLDER + ImageFileName);
         Files.write(path, bytes);
-        File = ImageFileName;}
+        File = ImageFileName;*/
+        File = file;
+    }
 
     //-> All Users
     public String get_all_user() throws JSONException {
@@ -125,7 +128,9 @@ public class Mod_User {
                 userInfo.put("Name",result.getString("Name"));
                 userInfo.put("Email",result.getString("Email"));
                 userInfo.put("Type", result.getString("Type"));
-                userInfo.put("Img", "http://localhost:8080/UserImg/"+result.getString("Img"));
+                Blob blob = result.getBlob("Img");
+                InputStream inputStream = blob.getBinaryStream();
+                userInfo.put("Img", inputStream);
             }
         }
         catch (SQLException e){

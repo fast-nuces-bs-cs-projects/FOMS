@@ -23,6 +23,12 @@ public class View_User {
         return controller_User.userList();
     }
 
+    //-> Get User Image
+    @GetMapping(path = "/", produces = "application/json")
+    public String UserImage(@RequestParam("Email") String Email) throws JSONException {
+        return controller_User.userList();
+    }
+
     //-> Add User i.e Operator or Customer
     @PostMapping(path = "/", produces = "application/json")
     public Boolean addUser(@RequestParam("Name") String Name, @RequestParam("Email") String Email, @RequestParam("Pswd") String Pswd,
@@ -46,7 +52,6 @@ public class View_User {
     public Map<String, String> login(@RequestParam("Email") String Email, @RequestParam("Pswd") String Pswd) {
         controller_User.setEmail(Email);
         controller_User.setPswd(Pswd);
-
         return controller_User.verifyCredentials();
     }
 

@@ -1,5 +1,8 @@
 package pkg.foms.Modal;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+
 public class Mod_Login {
 
 
@@ -8,21 +11,23 @@ public class Mod_Login {
     private static String Id;
     private static String UserName ;
     private static String Email;
-    private static String Image;
+    private static FileInputStream Image;
 
     //-> Setter
     public void setId(String id) {Id = id;}
     public void setUserName(String userName) {UserName = userName;}
     public void setEmail(String email) {Email = email;}
-    public void setImage(String image) {
-        Image = image. replaceAll(" ", "%20");
+    public void setImage(FileInputStream image) {
+        //byte[] bytes = Base64.getDecoder().decode(image);
+        System.out.println(image);
+        Image = image;
     }
 
     //-> Getter
     public String getId() {return Id;}
     public String getUserName() {return UserName;}
     public String getEmail() {return Email;}
-    public String getImage() {return Image;}
+    public InputStream getImage() {return Image;}
 
 
 }

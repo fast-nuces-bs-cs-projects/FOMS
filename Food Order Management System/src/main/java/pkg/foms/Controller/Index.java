@@ -18,6 +18,7 @@ import pkg.foms.Api.Login;
 import pkg.foms.HelloApplication;
 import pkg.foms.Modal.Mod_Login;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -75,7 +76,7 @@ public class Index {
             modalLogin.setId(String.valueOf(userInfo.get("ID")));
             modalLogin.setUserName(String.valueOf(userInfo.get("Name")));
             modalLogin.setEmail(String.valueOf(userInfo.get("Email")));
-            modalLogin.setImage(String.valueOf(userInfo.get("Img")));
+            modalLogin.setImage((FileInputStream) userInfo.get("Img"));
             load_Dashboard();
         } catch (JSONException e) {
             msg_box.setAlertType(Alert.AlertType.ERROR);

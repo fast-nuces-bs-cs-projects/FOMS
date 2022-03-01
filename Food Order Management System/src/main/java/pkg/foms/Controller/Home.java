@@ -16,14 +16,11 @@ import javafx.stage.StageStyle;
 import org.json.JSONException;
 import org.json.JSONObject;
 import pkg.foms.Api.Item;
-import pkg.foms.Api.User;
 import pkg.foms.HelloApplication;
 import pkg.foms.Modal.Mod_Login;
+import pkg.foms.Modal.Mode_User;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -87,25 +84,108 @@ public class Home {
     @FXML
     private Label labelTotalRejectedOrders;
 
+
+    //-> Call Class
+    Mode_User mode_user = new Mode_User();
+
+
     //-> Buttons
     @FXML
     private Button btn_Logout;
 
     //-> Message box
     Alert msg_box = new Alert(Alert.AlertType.NONE);
-
-    //-> Class Call
-    Mod_Login modalLogin = new Mod_Login();
-    User ApiUser = new User();
-    Item ApiItem = new Item();
-
-    //-> Functions
-
-    //-> Message Box
     void displayMessageBox(String msg,String Type){
         msg_box.setAlertType(Alert.AlertType.valueOf(Type));
         msg_box.setContentText(msg);
         msg_box.showAndWait();
+    }
+
+    //-> Class Call
+    Mod_Login modalLogin = new Mod_Login();
+   // User ApiUser = new User();
+    Item ApiItem = new Item();
+
+    //-> Functions
+
+    //-> Switching Pane
+
+    @FXML
+    void overview(ActionEvent event) {paneOverview.setVisible(true);stackpane.getChildren().setAll(paneOverview);}
+
+    @FXML
+    void allOrders(ActionEvent event) {paneAllOrders.setVisible(true);stackpane.getChildren().setAll(paneAllOrders);}
+
+    @FXML
+    void feedback(ActionEvent event) {paneCustomerFeedback.setVisible(true);stackpane.getChildren().setAll(paneCustomerFeedback);}
+
+    @FXML
+    void addItem(ActionEvent event) {paneAddItem.setVisible(true);stackpane.getChildren().setAll(paneAddItem);}
+
+    @FXML
+    void addUser(ActionEvent event) {paneAddUser.setVisible(true);stackpane.getChildren().setAll(paneAddUser);}
+
+    //--------------------------- Add Item ---------------------------
+    @FXML
+    void UploadItemImg(ActionEvent event){
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image", "*.png*"));
+        File file = fc.showOpenDialog(null);
+        //->Set Image Path
+        txt_ImgPathItem.setText(String.valueOf(file.getAbsoluteFile()));
+    }
+
+
+    @FXML
+    void add_Item(ActionEvent event) throws JSONException, IOException, URISyntaxException {
+        String ItemName      = txt_ItemName.getText();
+        String ItemDetail    = txt_ItemDetail.getText();
+        Path ItemImagePath = Path.of(txt_ImgPathItem.getText());
+
+        if(ItemName.isEmpty() || ItemDetail.isEmpty()) {displayMessageBox("Please Complete all fields ..!!","WARNING");}
+        else if(!Files.exists(ItemImagePath)){displayMessageBox("File not exists ..!!","WARNING");}
+        else{
+            String msg = ApiItem.ApiAddItem(ItemName,ItemDetail,ItemImagePath);
+            displayMessageBox(msg,"WARNING");
+            if(msg.equals("Added Successfully ..!!")){
+                txt_ItemName.setText("");
+                txt_ItemDetail.setText("");
+                txt_ImgPathItem.setText("");
+            }
+        }
+    }
+
+
+    //--------------------------- Add User ---------------------------
+    @FXML
+    void uploadUserImg(ActionEvent event){
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image", "*.png*"));
+        File file = fc.showOpenDialog(null);
+        //->Set Image Path
+        txt_ImgPathUser.setText(String.valueOf(file.getAbsoluteFile()));
+    }
+
+    @FXML
+    void add_User(ActionEvent event) throws IOException, URISyntaxException, JSONException {
+        mode_user.setName(txt_name.getText());
+        mode_user.setEmail(txt_email.getText());
+        mode_user.setPswd(txt_pswd.getText());
+        mode_user.setUserImagePath(Path.of(txt_ImgPathUser.getText()));
+
+
+        if(txt_name.getText().isEmpty() && txt_email.getText().isEmpty() &&
+                txt_pswd.getText().isEmpty() && txt_ImgPathItem.getText().isEmpty()){
+            displayMessageBox("Please Complete all fields & Check if Image Exist on Path ..!!","WARNING");
+        }
+        else{
+            String msg = mode_user.add_user();
+            if(msg.equals("true")){
+                displayMessageBox("Registered Successfully ..!!","INFORMATION");
+                txt_name.setText("");txt_email.setText("");txt_pswd.setText("");txt_ImgPathUser.setText("");
+            }
+            else{displayMessageBox("Error ..!! User Already Exists or ","WARNING");}
+        }
     }
 
     //-> Logout
@@ -135,9 +215,12 @@ public class Home {
         //-> Load Info
         username.setText(modalLogin.getUserName());
         email_label.setText(modalLogin.getEmail());
-        URL url = new URL(modalLogin.getImage());
-        System.out.println(url);
-        Image image = new Image(String.valueOf(url));
+        InputStream imageFile = modalLogin.getImage();
+
+
+
+
+        Image image = new Image(imageFile);
         profImg.setImage(image);
 
     }
