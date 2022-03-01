@@ -16,6 +16,7 @@ import org.json.JSONException;
 
 import pkg.foms.Api.Api_Item;
 import pkg.foms.HelloApplication;
+import pkg.foms.Modal.Mod_Item;
 import pkg.foms.Modal.Mod_Login;
 import pkg.foms.Modal.Mod_User;
 
@@ -86,10 +87,10 @@ public class Home {
     @FXML
     private Button btn_Logout;
 
-    //-> Call Class
-    Mod_Login modalLogin = new Mod_Login();
-    Mod_User mode_user = new Mod_User();
-    Api_Item ApiItem = new Api_Item();
+    //--> Call Class
+    Mod_Login mod_login = new Mod_Login();
+    Mod_User mod_user   = new Mod_User();
+    Mod_Item mod_item   = new Mod_Item();
 
     //-> Message box
     Alert msg_box = new Alert(Alert.AlertType.NONE);
@@ -136,7 +137,7 @@ public class Home {
         String ItemDetail    = txt_ItemDetail.getText();
         Path ItemImagePath = Path.of(txt_ImgPathItem.getText());
 
-        if(ItemName.isEmpty() || ItemDetail.isEmpty()) {displayMessageBox("Please Complete all fields ..!!","WARNING");}
+        /*if(ItemName.isEmpty() || ItemDetail.isEmpty()) {displayMessageBox("Please Complete all fields ..!!","WARNING");}
         else if(!Files.exists(ItemImagePath)){displayMessageBox("File not exists ..!!","WARNING");}
         else{
             String msg = ApiItem.ApiAddItem(ItemName,ItemDetail,ItemImagePath);
@@ -146,7 +147,7 @@ public class Home {
                 txt_ItemDetail.setText("");
                 txt_ImgPathItem.setText("");
             }
-        }
+        }*/
     }
 
 
@@ -162,17 +163,17 @@ public class Home {
 
     @FXML
     void add_User(ActionEvent event) throws IOException, URISyntaxException, JSONException {
-        mode_user.setName(txt_name.getText());
-        mode_user.setEmail(txt_email.getText());
-        mode_user.setPswd(txt_pswd.getText());
-        mode_user.setUserImagePath(Path.of(txt_ImgPathUser.getText()));
+        mod_user.setName(txt_name.getText());
+        mod_user.setEmail(txt_email.getText());
+        mod_user.setPswd(txt_pswd.getText());
+        mod_user.setUserImagePath(Path.of(txt_ImgPathUser.getText()));
 
         if(txt_name.getText().isEmpty() && txt_email.getText().isEmpty() &&
                 txt_pswd.getText().isEmpty() && txt_ImgPathItem.getText().isEmpty()){
             displayMessageBox("Please Complete all fields & Check if Image Exist on Path ..!!","WARNING");
         }
         else{
-            String msg = mode_user.add_user();
+            String msg = mod_user.add_user();
             if(msg.equals("true")){
                 displayMessageBox("Registered Successfully ..!!","INFORMATION");
                 txt_name.setText("");txt_email.setText("");txt_pswd.setText("");txt_ImgPathUser.setText("");
@@ -206,9 +207,9 @@ public class Home {
         paneOverview.setVisible(true);
 
         //-> Load Info
-        username.setText(modalLogin.getUserName());
-        email_label.setText(modalLogin.getEmail());
-        URL url = new URL(modalLogin.getImage());
+        username.setText(mod_login.getUserName());
+        email_label.setText(mod_login.getEmail());
+        URL url = new URL(mod_login.getImage());
         System.out.println(url);
         Image image = new Image(String.valueOf(url));
         profImg.setImage(image);
