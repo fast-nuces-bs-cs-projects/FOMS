@@ -23,8 +23,10 @@ public class SignIn extends AppCompatActivity {
         TextView email = (TextView) findViewById(R.id.email);
         TextView pswd  = (TextView) findViewById(R.id.pswd);
         Button login   = (Button) findViewById(R.id.signIn);
+        Button register= (Button) findViewById(R.id.register);
         TextView msg   = (TextView) findViewById(R.id.msg);
 
+        //--> Login Button
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,12 +47,27 @@ public class SignIn extends AppCompatActivity {
 
             }
         });
+
+        //--> Register Button
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRegister();
+            }
+        });
     }
 
     public void openHome(){
         Intent intent = new Intent(getApplicationContext(),Home.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+    }
+
+    public void openRegister(){
+        Intent intent = new Intent(getApplicationContext(),Register.class);
+        startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
     }
