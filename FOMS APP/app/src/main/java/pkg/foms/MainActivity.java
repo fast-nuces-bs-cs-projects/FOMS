@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import pkg.foms.ui.login.LoginActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,25 +18,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         handler = new Handler();
         callback = new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                startActivity(new Intent(getApplicationContext(), SignIn.class));
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         };
-        handler.postDelayed(callback, 10000);
+        handler.postDelayed(callback, 500);
 
 
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        handler.removeCallbacks(callback);
-    }
 }
