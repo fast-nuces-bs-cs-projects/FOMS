@@ -30,8 +30,8 @@ public class SignIn extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  openHome();
-               if(email.getText().length() == 0 || pswd.getText().length() == 0){
+               openHome();
+               /*if(email.getText().length() == 0 || pswd.getText().length() == 0){
                     msg.setText("Please complete all fields ..!!");
                }
                else {
@@ -43,7 +43,7 @@ public class SignIn extends AppCompatActivity {
                    if (result.equals(true)) {
                        openHome();
                    }
-               }
+               }*/
 
             }
         });

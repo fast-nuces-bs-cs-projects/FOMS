@@ -31,7 +31,8 @@ public class View_User {
     //-> Add User i.e Operator or Customer
     @PostMapping(path = "/", produces = "application/json")
     public Boolean addUser(@RequestParam("Name") String Name, @RequestParam("Email") String Email, @RequestParam("Pswd") String Pswd,
-                           @RequestParam("Type") String Type, @RequestParam("File") String File, @RequestParam(value = "PhoneNo",defaultValue = "NULL") String PhoneNo,
+                           @RequestParam("Type") String Type, @RequestParam(value= "File" ,defaultValue = "NULL") String File,
+                           @RequestParam(value = "PhoneNo",defaultValue = "NULL") String PhoneNo,
                            @RequestParam(value = "Address",defaultValue = "NULL") String Add) throws IOException {
 
         controller_User.setName(Name);
