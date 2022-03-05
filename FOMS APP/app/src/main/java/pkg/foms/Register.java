@@ -2,18 +2,14 @@ package pkg.foms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.File;
 import java.io.IOException;
 
-import pkg.foms.Model.Model_Register;
+import pkg.foms.Model.Model_User;
 
 public class Register extends AppCompatActivity {
 
@@ -22,7 +18,8 @@ public class Register extends AppCompatActivity {
 
 
     //--> Call Class
-    Model_Register modelRegister = new Model_Register();
+    Model_User modelUser = new Model_User();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +40,15 @@ public class Register extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                modelRegister.setName(String.valueOf(Name.getText()));
-                modelRegister.setEmail(String.valueOf(Email.getText()));
-                modelRegister.setPassword(String.valueOf(Pswd.getText()));
-                modelRegister.setAddress(String.valueOf(Add.getText()));
-                modelRegister.setPhNo(String.valueOf(phonenum.getText()));
+                modelUser.setName(String.valueOf(Name.getText()));
+                modelUser.setEmail(String.valueOf(Email.getText()));
+                modelUser.setPassword(String.valueOf(Pswd.getText()));
+                modelUser.setAddress(String.valueOf(Add.getText()));
+                modelUser.setPhNo(String.valueOf(phonenum.getText()));
 
                 String result = null;
                 try {
-                    result = modelRegister.register_customer();
+                    result = modelUser.register_customer();
                     if(result.equals("True")){msg.setText("Registered Successfully ..!!"); }
                     else{ msg.setText("User Already Exists ..!!"); }
                 }

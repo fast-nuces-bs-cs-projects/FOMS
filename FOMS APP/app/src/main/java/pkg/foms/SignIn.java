@@ -4,16 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import pkg.foms.Model.Mode_SignIn;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import pkg.foms.Model.Model_User;
 
 public class SignIn extends AppCompatActivity {
 
     //--> Call Class
-    Mode_SignIn model_signIn = new Mode_SignIn();
+    Model_User modelUser = new Model_User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +35,31 @@ public class SignIn extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               openHome();
-               /*if(email.getText().length() == 0 || pswd.getText().length() == 0){
+               if(email.getText().length() == 0 || pswd.getText().length() == 0){
                     msg.setText("Please complete all fields ..!!");
                }
                else {
-                   model_signIn.setEmail(String.valueOf(email.getText()));
-                   model_signIn.setPswd(String.valueOf(pswd.getText()));
+                   modelUser.setEmail(String.valueOf(email.getText()));
+                   modelUser.setPassword(String.valueOf(pswd.getText()));
 
-                   Boolean result = model_signIn.verifyCredentials();
+                   String result = "false";
 
-                   if (result.equals(true)) {
-                       openHome();
+                   try {
+                       result = modelUser.verifyCredentials();
+                       JSONObject  userInfo = new JSONObject(result);
+
+                       modelUser.setId(String.valueOf(userInfo.get("ID")));
+                       modelUser.setName(String.valueOf(userInfo.get("Name")));
+                       modelUser.setEmail(String.valueOf(userInfo.get("Email")));
+                       String  type = String.valueOf(userInfo.get("Type"));
+                       if (type.equals("Customer")) { openHome(); }
+                       else{ msg.setText("Password Incorrect or User not Exist ..!!"); }
+
+                   } catch (IOException | JSONException e) {
+                       e.printStackTrace();
+                       msg.setText("UnExpected Error ..!!");
                    }
-               }*/
-
+               }
             }
         });
 
