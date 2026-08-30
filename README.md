@@ -25,13 +25,13 @@ This project was originally created as a university Object-Oriented Analysis and
 ## 🏗 System Architecture
 The Android app and JavaFX desktop app communicate with a Spring Boot REST API over HTTP/JSON. The API handles authentication, menu, cart, and order operations and persists data in SQLite through Spring Data JPA.
 
-![System Architecture](Diagram_Architecture.png)
+![System Architecture](Submited%20Artifacts/Diagram_Architecture.png)
 
 ## 🔄 Order Flow
 The core business workflow connects both clients through the centralized backend:
 **Customer adds items to cart → places order from Android → Spring Boot stores order → JavaFX fetches new order → admin accepts/rejects or changes status → updated order state becomes visible to the customer.**
 
-![Order Sequence Flow](Diagram_Sequence_OrderFlow.png)
+![Order Sequence Flow](Submited%20Artifacts/Diagram_Sequence_OrderFlow.png)
 
 ## 🗄 Database Design
 The system's database schema revolves around five main entities:
@@ -41,12 +41,12 @@ The system's database schema revolves around five main entities:
 - `Order`: The primary transaction record.
 - `OrderItem`: The specific items and quantities inside an order.
 
-![Entity Relationship Diagram (ERD)](Diagram_ERD.png)
+![Entity Relationship Diagram (ERD)](Submited%20Artifacts/Diagram_ERD.png)
 
 ## 📐 OOAD / Design Artifacts
 The project documentation includes comprehensive diagrams derived directly from the implementation, such as the Architecture, ERD, and Sequence diagrams above, alongside structural Use Case models.
 
-![Use Case Diagram](Diagram_UseCase.png)
+![Use Case Diagram](Submited%20Artifacts/Diagram_UseCase.png)
 
 ## 💻 Technology Stack
 - **Languages:** Java
