@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foodie.app.controller.MenuController" fitToWidth="true" hbarPolicy="NEVER" styleClass="dashboard-scroll">
+                        <VBox spacing="16" styleClass="menu-content">
+                            <HBox alignment="CENTER_LEFT">
+                                <VBox spacing="4">
+                                    <Label text="Menu" styleClass="new-dashboard-title" />
+                                    <Label text="Manage your food items, categories and availability." styleClass="new-dashboard-subtitle" />
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Button text="+  Add Item" onAction="#handleAddItem" styleClass="add-menu-item-button">
+                                    <tooltip><Tooltip text="Add a new menu item" /></tooltip>
+                                </Button>
+                            </HBox>
+
+                            <GridPane hgap="16">
+                                <columnConstraints><ColumnConstraints percentWidth="33.33" hgrow="ALWAYS" /><ColumnConstraints percentWidth="33.33" hgrow="ALWAYS" /><ColumnConstraints percentWidth="33.34" hgrow="ALWAYS" /></columnConstraints>
+                                <HBox alignment="CENTER_LEFT" spacing="16" maxWidth="Infinity" styleClass="menu-summary-card, menu-summary-total">
+                                    <Label text="♜" styleClass="summary-icon, icon-green" />
+                                    <VBox><Label text="Total Items" styleClass="summary-name" /><Label fx:id="totalItemsValue" text="0" styleClass="summary-value" /></VBox>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="16" maxWidth="Infinity" GridPane.columnIndex="1" styleClass="menu-summary-card, menu-summary-active">
+                                    <Label text="◇" styleClass="summary-icon, icon-amber" />
+                                    <VBox><Label text="Active Items" styleClass="summary-name" /><Label fx:id="activeItemsValue" text="0" styleClass="summary-value" /></VBox>
+                                    <Region HBox.hgrow="ALWAYS" /><Label text="●  Active" styleClass="active-summary-label" />
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="16" maxWidth="Infinity" GridPane.columnIndex="2" styleClass="menu-summary-card, menu-summary-inactive">
+                                    <Label text="×" styleClass="summary-icon, icon-red" />
+                                    <VBox><Label text="Inactive Items" styleClass="summary-name" /><Label fx:id="inactiveItemsValue" text="0" styleClass="summary-value" /></VBox>
+                                    <Region HBox.hgrow="ALWAYS" /><Label text="●  Inactive" styleClass="inactive-summary-label" />
+                                </HBox>
+                            </GridPane>
+
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <ToggleButton text="All" selected="true" userData="ALL" toggleGroup="$menuFilterGroup" onAction="#handleCategoryFilter" styleClass="menu-filter, menu-filter-all" />
+                                <ToggleButton text="Burgers" userData="BURGERS" toggleGroup="$menuFilterGroup" onAction="#handleCategoryFilter" styleClass="menu-filter" />
+                                <ToggleButton text="Pizzas" userData="PIZZAS" toggleGroup="$menuFilterGroup" onAction="#handleCategoryFilter" styleClass="menu-filter" />
+                                <ToggleButton text="Drinks" userData="DRINKS" toggleGroup="$menuFilterGroup" onAction="#handleCategoryFilter" styleClass="menu-filter" />
+                                <ToggleButton text="Sides" userData="SIDES" toggleGroup="$menuFilterGroup" onAction="#handleCategoryFilter" styleClass="menu-filter" />
+                                <ToggleButton text="Desserts" userData="DESSERTS" toggleGroup="$menuFilterGroup" onAction="#handleCategoryFilter" styleClass="menu-filter" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label fx:id="showingItemsLabel" text="Showing 0 items" styleClass="showing-items-label" />
+                            </HBox>
+
+                            <TableView fx:id="menuTable" fixedCellSize="58" prefHeight="520" VBox.vgrow="ALWAYS" styleClass="menu-table">
+                                <columns>
+                                    <TableColumn fx:id="numberColumn" text="#" prefWidth="45" />
+                                    <TableColumn fx:id="imageColumn" text="Image" prefWidth="75" />
+                                    <TableColumn fx:id="itemColumn" text="Item Name" prefWidth="270" />
+                                    <TableColumn fx:id="categoryColumn" text="Category" prefWidth="120" />
+                                    <TableColumn fx:id="priceColumn" text="Price (Rs.)" prefWidth="110" />
+                                    <TableColumn fx:id="availabilityColumn" text="Status" prefWidth="120" />
+                                    <TableColumn fx:id="menuActionsColumn" text="Actions" prefWidth="150" />
+                                </columns>
+                                <placeholder><Label text="No menu items in this category" styleClass="empty-table-label" /></placeholder>
+                            </TableView>
+                        </VBox>
+                    </ScrollPane>

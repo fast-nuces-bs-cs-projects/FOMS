@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foodie.app.controller.DashboardController" fitToWidth="true" hbarPolicy="NEVER" styleClass="dashboard-scroll">
+                        <VBox spacing="18" styleClass="new-dashboard-content">
+                            <VBox spacing="4">
+                                <Label text="Dashboard" styleClass="new-dashboard-title" />
+                                <Label text="Overview of orders and activity." styleClass="new-dashboard-subtitle" />
+                            </VBox>
+
+                            <GridPane hgap="16">
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="25" hgrow="ALWAYS" />
+                                    <ColumnConstraints percentWidth="25" hgrow="ALWAYS" />
+                                    <ColumnConstraints percentWidth="25" hgrow="ALWAYS" />
+                                    <ColumnConstraints percentWidth="25" hgrow="ALWAYS" />
+                                </columnConstraints>
+                                <VBox spacing="15" maxWidth="Infinity" styleClass="summary-card">
+                                    <HBox alignment="CENTER_LEFT" spacing="16">
+                                        <Label text="≡" styleClass="summary-icon, icon-green" />
+                                        <VBox spacing="4"><Label text="Total Orders" styleClass="summary-name" /><Label fx:id="totalOrdersValue" text="0" styleClass="summary-value" /></VBox>
+                                    </HBox>
+                                </VBox>
+                                <VBox spacing="15" maxWidth="Infinity" GridPane.columnIndex="1" styleClass="summary-card">
+                                    <HBox alignment="CENTER_LEFT" spacing="16">
+                                        <Label text="◷" styleClass="summary-icon, icon-amber" />
+                                        <VBox spacing="4"><Label text="Pending Orders" styleClass="summary-name" /><Label fx:id="pendingOrdersValue" text="0" styleClass="summary-value" /></VBox>
+                                    </HBox>
+                                </VBox>
+                                <VBox spacing="15" maxWidth="Infinity" GridPane.columnIndex="2" styleClass="summary-card">
+                                    <HBox alignment="CENTER_LEFT" spacing="16">
+                                        <Label text="\$" styleClass="summary-icon, icon-green" />
+                                        <VBox spacing="4"><Label text="Revenue" styleClass="summary-name" /><Label fx:id="revenueValue" text="\$0" styleClass="summary-value" /></VBox>
+                                    </HBox>
+                                </VBox>
+                                <VBox spacing="15" maxWidth="Infinity" GridPane.columnIndex="3" styleClass="summary-card">
+                                    <HBox alignment="CENTER_LEFT" spacing="16">
+                                        <Label text="✓" styleClass="summary-icon, icon-green" />
+                                        <VBox spacing="4"><Label text="Completed Orders" styleClass="summary-name" /><Label fx:id="completedOrdersValue" text="0" styleClass="summary-value" /></VBox>
+                                    </HBox>
+                                </VBox>
+                            </GridPane>
+
+                            <GridPane hgap="18">
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="47" hgrow="ALWAYS" />
+                                    <ColumnConstraints percentWidth="53" hgrow="ALWAYS" />
+                                </columnConstraints>
+                                <VBox spacing="8" maxWidth="Infinity" styleClass="new-panel">
+                                    <Label text="Weekly Orders" styleClass="new-panel-title" />
+                                    <LineChart fx:id="orderChart" animated="false" legendVisible="false" createSymbols="true" prefHeight="285" VBox.vgrow="ALWAYS">
+                                        <xAxis><CategoryAxis side="BOTTOM" /></xAxis>
+                                        <yAxis><NumberAxis side="LEFT" autoRanging="true" /></yAxis>
+                                    </LineChart>
+                                </VBox>
+                                <VBox spacing="12" maxWidth="Infinity" GridPane.columnIndex="1" styleClass="new-panel">
+                                    <Label text="Recent Orders" styleClass="new-panel-title" />
+                                    <TableView fx:id="recentOrdersTable" fixedCellSize="42" prefHeight="252" VBox.vgrow="ALWAYS" styleClass="orders-table">
+                                        <columns>
+                                            <TableColumn fx:id="orderIdColumn" text="Order ID" prefWidth="120" />
+                                            <TableColumn fx:id="customerColumn" text="Customer" prefWidth="190" />
+                                            <TableColumn fx:id="statusColumn" text="Status" prefWidth="125" />
+                                            <TableColumn fx:id="amountColumn" text="Amount" prefWidth="110" />
+                                        </columns>
+                                        <placeholder><Label text="No recent orders" styleClass="empty-table-label" /></placeholder>
+                                    </TableView>
+                                </VBox>
+                            </GridPane>
+
+                            <GridPane hgap="18">
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="47" hgrow="ALWAYS" />
+                                    <ColumnConstraints percentWidth="53" hgrow="ALWAYS" />
+                                </columnConstraints>
+                                <VBox spacing="8" maxWidth="Infinity" styleClass="new-panel">
+                                    <Label text="Order Status" styleClass="new-panel-title" />
+                                    <GridPane styleClass="status-table">
+                                        <columnConstraints><ColumnConstraints percentWidth="55" /><ColumnConstraints percentWidth="25" /><ColumnConstraints percentWidth="20" /></columnConstraints>
+                                        <Pane GridPane.columnSpan="3" styleClass="table-row-band" />
+                                        <Pane GridPane.rowIndex="1" GridPane.columnSpan="3" styleClass="table-row-band, alternate-row" />
+                                        <Pane GridPane.rowIndex="2" GridPane.columnSpan="3" styleClass="table-row-band" />
+                                        <Pane GridPane.rowIndex="3" GridPane.columnSpan="3" styleClass="table-row-band, alternate-row" />
+                                        <Label text="●   Completed" styleClass="legend-completed" /><Label text="1,216" GridPane.columnIndex="1" /><Label text="77.4%" GridPane.columnIndex="2" />
+                                        <Label text="●   Pending" GridPane.rowIndex="1" styleClass="legend-pending" /><Label text="32" GridPane.columnIndex="1" GridPane.rowIndex="1" /><Label text="2.6%" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <Label text="●   Preparing" GridPane.rowIndex="2" styleClass="legend-preparing" /><Label text="18" GridPane.columnIndex="1" GridPane.rowIndex="2" /><Label text="1.4%" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                        <Label text="●   Cancelled" GridPane.rowIndex="3" styleClass="legend-cancelled" /><Label text="12" GridPane.columnIndex="1" GridPane.rowIndex="3" /><Label text="0.8%" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    </GridPane>
+                                </VBox>
+                                <VBox spacing="8" maxWidth="Infinity" GridPane.columnIndex="1" styleClass="new-panel">
+                                    <Label text="Top Selling Items" styleClass="new-panel-title" />
+                                    <GridPane styleClass="selling-table">
+                                        <columnConstraints><ColumnConstraints percentWidth="82" /><ColumnConstraints percentWidth="18" /></columnConstraints>
+                                        <Pane GridPane.columnSpan="2" styleClass="table-header-band" />
+                                        <Pane GridPane.rowIndex="1" GridPane.columnSpan="2" styleClass="table-row-band" />
+                                        <Pane GridPane.rowIndex="2" GridPane.columnSpan="2" styleClass="table-row-band, alternate-row" />
+                                        <Pane GridPane.rowIndex="3" GridPane.columnSpan="2" styleClass="table-row-band" />
+                                        <Pane GridPane.rowIndex="4" GridPane.columnSpan="2" styleClass="table-row-band, alternate-row" />
+                                        <Label text="Item" styleClass="new-table-header" /><Label text="Orders" GridPane.columnIndex="1" styleClass="new-table-header" />
+                                        <HBox alignment="CENTER_LEFT" spacing="10" GridPane.rowIndex="1" styleClass="item-cell"><Label text="B" styleClass="food-badge" /><Label text="Classic Cheeseburger" /></HBox><Label text="236" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <HBox alignment="CENTER_LEFT" spacing="10" GridPane.rowIndex="2" styleClass="item-cell"><Label text="P" styleClass="food-badge" /><Label text="Margherita Pizza" /></HBox><Label text="189" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <HBox alignment="CENTER_LEFT" spacing="10" GridPane.rowIndex="3" styleClass="item-cell"><Label text="F" styleClass="food-badge" /><Label text="French Fries" /></HBox><Label text="142" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <HBox alignment="CENTER_LEFT" spacing="10" GridPane.rowIndex="4" styleClass="item-cell"><Label text="C" styleClass="food-badge" /><Label text="Chocolate Lava Cake" /></HBox><Label text="118" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    </GridPane>
+                                </VBox>
+                            </GridPane>
+                        </VBox>
+                    </ScrollPane>

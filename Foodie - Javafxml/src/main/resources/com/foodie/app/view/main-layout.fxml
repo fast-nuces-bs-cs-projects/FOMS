@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainRoot" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.foodie.app.controller.MainController"
+            stylesheets="@../style/app.css" styleClass="dashboard-root">
+    <left>
+        <BorderPane prefWidth="218" minWidth="218" maxWidth="218" styleClass="sidebar">
+            <top>
+                <VBox alignment="CENTER" spacing="8" styleClass="sidebar-brand">
+                    <ImageView fitWidth="82" fitHeight="82" preserveRatio="true" smooth="true">
+                        <Image url="@../image/logo_cropped.png" backgroundLoading="true" />
+                    </ImageView>
+                    <Label text="Foodie" styleClass="sidebar-title" />
+                    <Label text="Food Order Management System" styleClass="sidebar-subtitle" />
+                </VBox>
+            </top>
+            <center>
+                <VBox spacing="8" styleClass="nav-list">
+                    <Button fx:id="btnDashboard" text="▦    Dashboard" onAction="#handleDashboard" maxWidth="Infinity" styleClass="nav-button" />
+                    <Button fx:id="btnOrders" text="▤    Orders" onAction="#handleOrders" maxWidth="Infinity" styleClass="nav-button" />
+                    <Button fx:id="btnMenu" text="♜    Menu" onAction="#handleMenu" maxWidth="Infinity" styleClass="nav-button" />
+                    <Button fx:id="btnCustomers" text="♧    Customers" onAction="#handleCustomers" maxWidth="Infinity" styleClass="nav-button" />
+                </VBox>
+            </center>
+            <bottom>
+                <Button text="↪    Logout" onAction="#handleLogout" maxWidth="Infinity" styleClass="logout-button">
+                    <BorderPane.margin><javafx.geometry.Insets top="12" right="18" bottom="24" left="18" /></BorderPane.margin>
+                </Button>
+            </bottom>
+        </BorderPane>
+    </left>
+    <center>
+        <BorderPane styleClass="dashboard-main">
+            <top>
+                <HBox alignment="CENTER_RIGHT" spacing="5" styleClass="compact-window-bar"
+                      onMousePressed="#handleWindowPressed" onMouseDragged="#handleWindowDragged">
+                    <Button text="—" onAction="#handleMinimize" styleClass="window-button" />
+                    <Button text="□" onAction="#handleMaximize" styleClass="window-button" />
+                    <Button text="×" onAction="#handleClose" styleClass="window-button, close-button" />
+                </HBox>
+            </top>
+            <center>
+                <StackPane fx:id="contentArea" />
+            </center>
+        </BorderPane>
+    </center>
+</BorderPane>

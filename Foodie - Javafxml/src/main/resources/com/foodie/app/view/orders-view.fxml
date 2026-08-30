@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foodie.app.controller.OrdersController" fitToWidth="true" hbarPolicy="NEVER" styleClass="dashboard-scroll">
+                        <VBox spacing="16" styleClass="orders-content">
+                            <VBox spacing="4">
+                                <Label text="Orders" styleClass="new-dashboard-title" />
+                                <Label text="Live orders received from the Android app." styleClass="new-dashboard-subtitle" />
+                            </VBox>
+
+                            <GridPane hgap="16">
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="25" hgrow="ALWAYS" /><ColumnConstraints percentWidth="25" hgrow="ALWAYS" />
+                                    <ColumnConstraints percentWidth="25" hgrow="ALWAYS" /><ColumnConstraints percentWidth="25" hgrow="ALWAYS" />
+                                </columnConstraints>
+                                <HBox alignment="CENTER_LEFT" spacing="15" maxWidth="Infinity" styleClass="orders-stat-card">
+                                    <Label text="≡" styleClass="summary-icon, icon-green" />
+                                    <VBox spacing="3"><Label text="Total Orders" styleClass="summary-name" /><Label fx:id="totalOrdersValue" text="0" styleClass="summary-value" /></VBox>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="15" maxWidth="Infinity" GridPane.columnIndex="1" styleClass="orders-stat-card">
+                                    <Label text="◷" styleClass="summary-icon, icon-amber" />
+                                    <VBox spacing="3"><Label text="Pending Orders" styleClass="summary-name" /><Label fx:id="pendingOrdersValue" text="0" styleClass="summary-value" /></VBox>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="15" maxWidth="Infinity" GridPane.columnIndex="2" styleClass="orders-stat-card">
+                                    <Label text="♨" styleClass="summary-icon, icon-blue" />
+                                    <VBox spacing="3"><Label text="Preparing" styleClass="summary-name" /><Label fx:id="preparingOrdersValue" text="0" styleClass="summary-value" /></VBox>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="15" maxWidth="Infinity" GridPane.columnIndex="3" styleClass="orders-stat-card">
+                                    <Label text="✓" styleClass="summary-icon, icon-green" />
+                                    <VBox spacing="3"><Label text="Ready to Serve" styleClass="summary-name" /><Label fx:id="readyOrdersValue" text="0" styleClass="summary-value" /></VBox>
+                                </HBox>
+                            </GridPane>
+
+                            <VBox spacing="14" styleClass="orders-workspace">
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <ToggleButton text="All" selected="true" userData="ALL" toggleGroup="$orderFilterGroup" onAction="#handleFilter" styleClass="order-filter, filter-all" />
+                                    <ToggleButton text="Pending" userData="PENDING" toggleGroup="$orderFilterGroup" onAction="#handleFilter" styleClass="order-filter, filter-pending" />
+                                    <ToggleButton text="Preparing" userData="PREPARING" toggleGroup="$orderFilterGroup" onAction="#handleFilter" styleClass="order-filter, filter-preparing" />
+                                    <ToggleButton text="Ready" userData="READY" toggleGroup="$orderFilterGroup" onAction="#handleFilter" styleClass="order-filter, filter-ready" />
+                                    <ToggleButton text="Completed" userData="COMPLETED" toggleGroup="$orderFilterGroup" onAction="#handleFilter" styleClass="order-filter, filter-completed" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button text="Test incoming order" onAction="#handleSimulateIncoming" styleClass="simulate-order-button" />
+                                    <TextField fx:id="searchField" promptText="Search orders..." prefWidth="245" styleClass="orders-search" />
+                                    <Button text="☷  Filters" styleClass="secondary-filter-button" />
+                                </HBox>
+
+                                <HBox fx:id="incomingOrderCard" alignment="CENTER_LEFT" spacing="16" styleClass="incoming-order-card">
+                                    <StackPane styleClass="incoming-order-icon"><Label text="!" /></StackPane>
+                                    <VBox spacing="3" HBox.hgrow="ALWAYS">
+                                        <HBox spacing="9" alignment="CENTER_LEFT">
+                                            <Label text="New Android Order" styleClass="incoming-order-title" />
+                                            <Label fx:id="incomingOrderId" text="#ORD" styleClass="incoming-order-id" />
+                                        </HBox>
+                                        <Label fx:id="incomingCustomer" text="Customer" styleClass="incoming-order-customer" />
+                                        <Label fx:id="incomingItems" text="Items" styleClass="incoming-order-detail" />
+                                        <Label fx:id="incomingPayment" text="Payment" styleClass="incoming-order-detail" />
+                                    </VBox>
+                                    <Label fx:id="incomingAmount" text="0" styleClass="incoming-order-amount" />
+                                    <Button text="Reject" onAction="#handleRejectIncoming" styleClass="reject-order-button">
+                                        <tooltip><Tooltip text="Reject this incoming order" /></tooltip>
+                                    </Button>
+                                    <Button text="Accept Order" onAction="#handleAcceptIncoming" styleClass="accept-order-button">
+                                        <tooltip><Tooltip text="Accept and start preparing this order" /></tooltip>
+                                    </Button>
+                                </HBox>
+
+                                <TableView fx:id="ordersTable" fixedCellSize="58" prefHeight="500" VBox.vgrow="ALWAYS" styleClass="orders-page-table">
+                                    <columns>
+                                        <TableColumn fx:id="idColumn" text="Order ID" prefWidth="115" />
+                                        <TableColumn fx:id="customerColumn" text="Customer" prefWidth="150" />
+                                        <TableColumn fx:id="itemsColumn" text="Items" prefWidth="215" />
+                                        <TableColumn fx:id="typeColumn" text="Type" prefWidth="105" />
+                                        <TableColumn fx:id="paymentColumn" text="Payment" prefWidth="135" />
+                                        <TableColumn fx:id="amountColumn" text="Amount" prefWidth="90" />
+                                        <TableColumn fx:id="statusColumn" text="Status" prefWidth="105" />
+                                        <TableColumn fx:id="timeColumn" text="Time" prefWidth="95" />
+                                        <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="75" />
+                                    </columns>
+                                    <placeholder><Label text="No orders match your search" styleClass="empty-table-label" /></placeholder>
+                                </TableView>
+                            </VBox>
+                        </VBox>
+                    </ScrollPane>

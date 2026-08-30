@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foodie.app.controller.CustomersController" fitToWidth="true" hbarPolicy="NEVER" styleClass="dashboard-scroll">
+                        <VBox spacing="16" styleClass="menu-content">
+                            <HBox alignment="CENTER_LEFT">
+                                <VBox spacing="4">
+                                    <Label text="Customers" styleClass="new-dashboard-title" />
+                                    <Label text="Manage customer records and activity." styleClass="new-dashboard-subtitle" />
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Button text="+ Add New Customer" onAction="#handleAddCustomer" styleClass="add-menu-item-button">
+                                    <tooltip><Tooltip text="Register a new customer" /></tooltip>
+                                </Button>
+                            </HBox>
+
+                            <GridPane hgap="16">
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="33.33" hgrow="ALWAYS" />
+                                    <ColumnConstraints percentWidth="33.33" hgrow="ALWAYS" />
+                                    <ColumnConstraints percentWidth="33.34" hgrow="ALWAYS" />
+                                </columnConstraints>
+                                <HBox alignment="CENTER_LEFT" spacing="16" maxWidth="Infinity" styleClass="summary-card">
+                                    <Label text="👤" styleClass="summary-icon, icon-green" />
+                                    <VBox><Label text="Total Customers" styleClass="summary-name" /><Label fx:id="totalCustomersValue" text="1,248" styleClass="summary-value" /></VBox>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="16" maxWidth="Infinity" GridPane.columnIndex="1" styleClass="summary-card">
+                                    <Label text="👥" styleClass="summary-icon, icon-green" />
+                                    <VBox><Label text="Active Customers" styleClass="summary-name" /><Label fx:id="activeCustomersValue" text="1,078" styleClass="summary-value" /></VBox>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="16" maxWidth="Infinity" GridPane.columnIndex="2" styleClass="summary-card">
+                                    <Label text="?" styleClass="summary-icon, icon-red" />
+                                    <VBox><Label text="Inactive Customers" styleClass="summary-name" /><Label fx:id="inactiveCustomersValue" text="2" styleClass="summary-value" /></VBox>
+                                </HBox>
+                            </GridPane>
+
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <ToggleButton text="All" selected="true" userData="ALL" toggleGroup="$customerFilterGroup" onAction="#handleFilter" styleClass="customer-filter" />
+                                <ToggleButton text="Active" userData="ACTIVE" toggleGroup="$customerFilterGroup" onAction="#handleFilter" styleClass="customer-filter" />
+                                <ToggleButton text="Inactive" userData="INACTIVE" toggleGroup="$customerFilterGroup" onAction="#handleFilter" styleClass="customer-filter" />
+                                <Region HBox.hgrow="ALWAYS" />
+                            </HBox>
+
+                            <TableView fx:id="customersTable" fixedCellSize="50" prefHeight="520" VBox.vgrow="ALWAYS" styleClass="menu-table">
+                                <columns>
+                                    <TableColumn fx:id="idColumn" text="Customer ID" prefWidth="120" />
+                                    <TableColumn fx:id="nameColumn" text="Customer Name" prefWidth="200" />
+                                    <TableColumn fx:id="phoneColumn" text="Phone" prefWidth="150" />
+                                    <TableColumn fx:id="ordersColumn" text="Total Orders" prefWidth="120" />
+                                    <TableColumn fx:id="spentColumn" text="Total Spent (Rs.)" prefWidth="150" />
+                                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="120" />
+                                    <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="120" />
+                                </columns>
+                                <placeholder><Label text="No customers found" styleClass="empty-table-label" /></placeholder>
+                            </TableView>
+                        </VBox>
+                    </ScrollPane>
