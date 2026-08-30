@@ -131,3 +131,6 @@ This repository is a reconstructed edition of the original academic project. The
 
 ## 🎓 Academic Disclaimer
 This project was developed for educational purposes as part of an Object-Oriented Analysis and Design course.
+
+Original Academic Project: 2019
+Project Revival / Reconstruction: 2026
